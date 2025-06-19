@@ -17,4 +17,16 @@ public class ContaVendedor extends Conta{
     public void setLoja(String loja) {
         this.loja = loja;
     }
+
+    @Override
+    public String toString() {
+        return "Informações da conta:" +
+                "Nome: " + getNome() +
+                "\n" +
+                "Email: " + getEmail() +
+                "\n" +
+                "Tier: " +getTier() +
+                "\n" +
+                "Loja: " + loja;
+    }
 }

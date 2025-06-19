@@ -17,4 +17,18 @@ public class ContaClient extends Conta {
     public void setEndereço(Integer endereço) {
         this.endereço = endereço;
     }
+    @Override
+    public String toString() {
+        return "\n" +
+                "Informações da conta:" +
+                "\n" +
+                "Conta cliente" +
+                "\n"
+                +
+                "Nome: " + getNome() +
+                "\n" +
+                "Email: " + getEmail() +
+                "\n" +
+                "Tier: " +getTier();
+    }
 }

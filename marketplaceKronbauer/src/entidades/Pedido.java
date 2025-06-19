@@ -60,5 +60,21 @@ public class Pedido {
     public void setTotal(Double total) {
         this.total = total;
     }
+    private Double valorTotal(){
+        for (ItensPedido itensPedido : itensPedidoList){
+            total = total + itensPedido.totalPedido();
+        }
+        return total;
+        }
 
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "data=" + data +
+                ", IDPedido=" + IDPedido +
+                ", status=" + status +
+                ", total=" + total +
+                ", itensPedidoList=" + itensPedidoList +
+                '}';
+    }
 }

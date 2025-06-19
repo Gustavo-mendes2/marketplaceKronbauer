@@ -5,4 +5,5 @@ public class ServiçoPagamentoPaypal implements ServiçoPagamento {
     public double Pagamento() {
         return 0;
     }
+    // por tier
 }

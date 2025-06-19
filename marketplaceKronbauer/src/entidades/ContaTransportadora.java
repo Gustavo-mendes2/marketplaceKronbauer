@@ -17,4 +17,15 @@ public class ContaTransportadora extends Conta {
     public void setNumPendentes(Integer numPendentes) {
         NumPendentes = numPendentes;
     }
+    @Override
+    public String toString() {
+        return "Informações da conta:" +
+                "Nome: " + getNome() +
+                "\n" +
+                "Email: " + getEmail() +
+                "\n" +
+                "Tier: " +getTier() +
+                "\n" +
+                "Pedidos pedentes de entrega: " +  getNumPendentes();
+    }
 }

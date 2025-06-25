@@ -132,6 +132,22 @@ public class Main {
 							contaList.add(conta2);
 							break;
 					}
+				case 4:
+					System.out.println("Quantos produtos tem o pedido");
+					int qtdProdutos = sc.nextInt();
+					for (int a = 0; a < qtdProdutos; a++){
+						System.out.println("Digite o nome do " + (a+1) +"° produto");
+						String nomeProduto = sc.next();
+						System.out.println("Digite o preço do produto");
+						double preçoProduto = sc.nextDouble();
+						System.out.println("Digite o id do produto");
+						int IDProduto = sc.nextInt();
+						Produto produto = new Produto(IDProduto, nomeProduto, preçoProduto);
+						System.out.println("Quantidade:");
+						int quantidadeProdutos = sc.nextInt();
+						ItensPedido itensPedido = new ItensPedido(preçoProduto, produto, quantidadeProdutos, Status.ENCAMINHADO);
+						
+					}
 
 			}
 		}while (op != 0);

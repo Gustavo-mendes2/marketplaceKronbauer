@@ -60,6 +60,13 @@ public class Pedido {
     public void setTotal(Double total) {
         this.total = total;
     }
+    public void addItem(ItensPedido item) {
+        itensPedidoList.add(item);
+    }
+
+    public void removeItem(ItensPedido item) {
+        itensPedidoList.remove(item);
+    }
     private Double valorTotal(){
         for (ItensPedido itensPedido : itensPedidoList){
             total = total + itensPedido.totalPedido();

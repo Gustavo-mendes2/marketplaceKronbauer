@@ -6,22 +6,12 @@ import java.util.List;
 public class Produto {
     private Integer idProduto;
     private String nome;
-    private String descrição;
     private Double preço;
 
-    public Produto(Integer idProduto, String descrição, String nome, Double preço) {
+    public Produto(Integer idProduto, String nome, Double preço) {
         this.idProduto = idProduto;
-        this.descrição = descrição;
         this.nome = nome;
         this.preço = preço;
-    }
-
-    public String getDescrição() {
-        return descrição;
-    }
-
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
     }
 
     public Integer getIdProduto() {
@@ -51,7 +41,6 @@ public class Produto {
     @Override
     public String toString() {
         return "Produto{" +
-                "descrição='" + descrição + '\'' +
                 ", idProduto=" + idProduto +
                 ", nome='" + nome + '\'' +
                 ", preço=" + preço +

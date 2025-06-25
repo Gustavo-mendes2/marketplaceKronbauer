@@ -9,13 +9,10 @@ public class ItensPedido {
     private Integer qtd;
     private Double preço;
     Produto produto;
-    Status status;
-
-    public ItensPedido(Double preço, Produto produto, Integer qtd, Status status) {
+    public ItensPedido(Double preço, Produto produto, Integer qtd) {
         this.preço = preço;
         this.produto = produto;
         this.qtd = qtd;
-        this.status = status;
     }
 
     public Double getPreço() {
@@ -42,14 +39,7 @@ public class ItensPedido {
         this.qtd = qtd;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-    Double totalPedido(){
+    public Double totalPedido(){
         return preço * qtd;
     }
 
@@ -59,7 +49,7 @@ public class ItensPedido {
                 "preço=" + preço +
                 ", qtd=" + qtd +
                 ", produto=" + produto +
-                ", status=" + status +
+                totalPedido() +
                 '}';
     }
 }

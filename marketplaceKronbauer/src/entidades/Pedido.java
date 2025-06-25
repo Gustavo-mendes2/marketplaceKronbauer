@@ -11,7 +11,7 @@ public class Pedido {
     private Integer IDPedido;
     private LocalDateTime data;
     private Status status;
-    private Double total;
+    private Double total = 0.00;
     List<ItensPedido> itensPedidoList = new ArrayList<>();
 
     public Pedido(LocalDateTime data, Integer IDPedido, List<ItensPedido> itensPedidoList, Status status) {
@@ -67,9 +67,9 @@ public class Pedido {
     public void removeItem(ItensPedido item) {
         itensPedidoList.remove(item);
     }
-    private Double valorTotal(){
+    public Double valorTotal(){
         for (ItensPedido itensPedido : itensPedidoList){
-            total = total + itensPedido.totalPedido();
+            total += itensPedido.totalPedido();
         }
         return total;
         }
@@ -80,7 +80,7 @@ public class Pedido {
                 "data=" + data +
                 ", IDPedido=" + IDPedido +
                 ", status=" + status +
-                ", total=" + total +
+                ", total=" + valorTotal() +
                 ", itensPedidoList=" + itensPedidoList +
                 '}';
     }

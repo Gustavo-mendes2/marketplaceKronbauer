@@ -4,12 +4,9 @@ import entidades.*;
 import entidades.enumeradas.Status;
 import entidades.enumeradas.Tipo;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -141,7 +138,7 @@ public class Main {
 				case 4:
 					System.out.println("Quantos produtos tem o pedido");
 					int qtdProdutos = sc.nextInt();
-					ArrayList<ItensPedido> ArrayListItens = new ArrayList<>();
+					ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
 					for (int a = 0; a < qtdProdutos; a++){
 						System.out.println("Digite o nome do " + (a+1) +"° produto");
 						String nomeProduto = sc.next();
@@ -152,11 +149,11 @@ public class Main {
 						Produto produto = new Produto(IDProduto, nomeProduto, preçoProduto);
 						System.out.println("Quantidade:");
 						int quantidadeProdutos = sc.nextInt();
-						ItensPedido itensPedido = new ItensPedido(preçoProduto, produto, quantidadeProdutos, Status.ENCAMINHADO);
-						ArrayListItens.add(itensPedido);
+						ItensPedido itensPedido = new ItensPedido(preçoProduto, produto, quantidadeProdutos);
+						itensPedidoList.add(itensPedido);
 					}
 					LocalDateTime agora = LocalDateTime.now();
-					Pedido pedido = new Pedido(agora, 15, ArrayListItens, Status.ENCAMINHADO);
+					Pedido pedido = new Pedido(agora, 15, itensPedidoList, Status.ENCAMINHADO);
 					pedidoArrayList.add(pedido);
 					System.out.println(pedidoArrayList);
 			}

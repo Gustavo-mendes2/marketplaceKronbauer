@@ -5,9 +5,9 @@ import entidades.enumeradas.Tipo;
 
 public class ServiçoPagamentoPaypal implements ServiçoPagamento {
     @Override
-    public double Pagamento(Conta conta) {
+    public double Pagamento(Conta conta, Double PagamentoTotal) {
         if (conta.getTier() == Tipo.BRONZE){
-
+            return PagamentoTotal * 1.20;
         }
         if(conta.getTier() == Tipo.PRATA){
 

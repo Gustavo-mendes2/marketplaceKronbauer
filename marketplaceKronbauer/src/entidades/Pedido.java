@@ -2,30 +2,30 @@ package entidades;
 
 import entidades.enumeradas.Status;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Pedido {
     private Integer IDPedido;
-    private Date data;
+    private LocalDateTime data;
     private Status status;
     private Double total;
     List<ItensPedido> itensPedidoList = new ArrayList<>();
 
-    public Pedido(Date data, Integer IDPedido, List<ItensPedido> itensPedidoList, Status status, Double total) {
+    public Pedido(LocalDateTime data, Integer IDPedido, List<ItensPedido> itensPedidoList, Status status) {
         this.data = data;
         this.IDPedido = IDPedido;
         this.itensPedidoList = itensPedidoList;
         this.status = status;
-        this.total = total;
     }
 
-    public Date getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 

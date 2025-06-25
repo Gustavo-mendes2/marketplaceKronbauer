@@ -1,5 +1,7 @@
 package serviços;
 
+import entidades.Conta;
+
 public interface ServiçoPagamento {
-    public double Pagamento();
+    public double Pagamento(Conta conta);
 }

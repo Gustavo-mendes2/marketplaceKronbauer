@@ -9,10 +9,18 @@ public class ItensPedido {
     private Integer qtd;
     private Double preço;
     Produto produto;
-    public ItensPedido(Double preço, Produto produto, Integer qtd) {
+
+    //adicionando o tipo de pagamento
+    private String forma;
+    ServiçoPagamento ServicoPagamento;
+
+    public ItensPedido(Double preço, Produto produto, Integer qtd, String forma, Conta conta) {
         this.preço = preço;
         this.produto = produto;
         this.qtd = qtd;
+        //adicionando o tio de pagamento
+        this.forma = forma;
+        this.conta = conta;
     }
 
     public Double getPreço() {
@@ -43,13 +51,26 @@ public class ItensPedido {
         return preço * qtd;
     }
 
+    public String getForma() { return forma; }
+
+    public Double precoFinal(){
+        if (getForma() == 'C'){
+            ServicoPagamento = new ServiçoPagamentoCrédito();
+            return ServicoPagamento.pagamento(conta, getPreço());
+        }
+        if (getForma() = 'P'){
+            ServicoPagamento = new ServiçoPagamentoPix();
+            return ServicoPagamento.pagamento(conta, getPreço());
+        }
+    }
+
     @Override
     public String toString() {
         return "ItensPedido{" +
-                "preço=" + preço +
+                "preço=" + precoFinal() +
                 ", qtd=" + qtd +
                 ", produto=" + produto +
-                totalPedido() +
+                 +
                 '}';
     }
 }

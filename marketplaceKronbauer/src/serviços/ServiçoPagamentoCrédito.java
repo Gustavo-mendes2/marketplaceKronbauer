@@ -3,7 +3,7 @@ package serviços;
 import entidades.Conta;
 import entidades.enumeradas.Tipo;
 
-public class ServiçoPagamentoPaypal implements ServiçoPagamento {
+public class ServiçoPagamentoCrédito implements ServiçoPagamento {
     @Override
     public double Pagamento(Conta conta, Double PagamentoTotal) {
         if (conta.getTier() == Tipo.BRONZE) {

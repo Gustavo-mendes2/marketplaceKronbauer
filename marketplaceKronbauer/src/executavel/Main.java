@@ -136,6 +136,16 @@ public class Main {
 							break;
 					}
 				case 4:
+
+					System.out.println("Qual a ID do cliente");
+					int ID = sc.nextInt();
+
+					for (conta : contaList){
+						if (conta.getId() == ID){
+							return conta;
+						}
+					}
+
 					System.out.println("Quantos produtos tem o pedido");
 					int qtdProdutos = sc.nextInt();
 					ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
@@ -149,7 +159,13 @@ public class Main {
 						Produto produto = new Produto(IDProduto, nomeProduto, preçoProduto);
 						System.out.println("Quantidade:");
 						int quantidadeProdutos = sc.nextInt();
-						ItensPedido itensPedido = new ItensPedido(preçoProduto, produto, quantidadeProdutos);
+
+                        String tipoPagamento;
+
+                        System.out.println("Qual a forma de pagamento ? (C)redito ou (P)ix");
+                        tipoPagamento = sc.next();
+
+						ItensPedido itensPedido = new ItensPedido(preçoProduto,produto,quantidadeProdutos,tipoPagamento,conta);
 						itensPedidoList.add(itensPedido);
 					}
 					LocalDateTime agora = LocalDateTime.now();

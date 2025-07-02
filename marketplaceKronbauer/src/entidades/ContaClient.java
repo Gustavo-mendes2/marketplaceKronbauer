@@ -25,6 +25,8 @@ public class ContaClient extends Conta {
                 "Conta cliente" +
                 "\n"
                 +
+                "ID: "+ getId() +
+                "\n" +
                 "Nome: " + getNome() +
                 "\n" +
                 "Email: " + getEmail() +

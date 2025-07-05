@@ -1,7 +1,7 @@
 package serviços;
 
-import entidades.Conta;
+import entidades.enumeradas.Tipo;
 
 public interface ServiçoPagamento {
-    public double Pagamento(Conta conta, Double PagamentoTotal);
+    public double Pagamento(Tipo contaTipo, Double PagamentoTotal);
 }

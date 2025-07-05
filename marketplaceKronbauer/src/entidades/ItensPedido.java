@@ -1,6 +1,7 @@
 package entidades;
 
 import entidades.enumeradas.Status;
+import entidades.enumeradas.Tipo;
 import serviços.ServiçoPagamento;
 import serviços.ServiçoPagamentoCrédito;
 import serviços.ServiçoPagamentoPix;
@@ -11,18 +12,21 @@ import java.util.List;
 public class ItensPedido {
     private Integer qtd;
     private Double preço;
-    Produto produto;
+    private Produto produto;
 
     //adicionando o tipo de pagamento
     private String forma;
-    ServiçoPagamento ServicoPagamento;
+    private ServiçoPagamento ServicoPagamento;
+    private Tipo contaTipo;
 
-    public ItensPedido(Double preço, Produto produto, Integer qtd, String forma, Conta conta) {
+    public ItensPedido(Double preço, Produto produto, Integer qtd, String forma, Tipo contaTipo) {
         this.preço = preço;
         this.produto = produto;
         this.qtd = qtd;
         //adicionando o tio de pagamento
-        this.forma = forma;}
+        this.forma = forma;
+        this.contaTipo = contaTipo;
+    }
 
     public Double getPreço() {
         return preço;
@@ -55,14 +59,14 @@ public class ItensPedido {
     public String getForma() { return forma; }
 
     public Double precoFinal(){
-        Conta conta;
+
         if (getForma().equalsIgnoreCase("C")){
             ServicoPagamento = new ServiçoPagamentoCrédito();
-            return ServicoPagamento.Pagamento(conta, getPreço());
+            return ServicoPagamento.Pagamento(contaTipo, getPreço());
         }
         if (getForma().equalsIgnoreCase("P")){
             ServicoPagamento = new ServiçoPagamentoPix();
-            return ServicoPagamento.Pagamento(conta, getPreço());
+            return ServicoPagamento.Pagamento(contaTipo, getPreço());
         }
         return 0.00;
     }

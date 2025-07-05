@@ -165,7 +165,7 @@ public class Main {
                         System.out.println("Qual a forma de pagamento ? (C)redito ou (P)ix");
                         tipoPagamento = sc.next();
 
-						ItensPedido itensPedido = new ItensPedido(preçoProduto,produto,quantidadeProdutos,tipoPagamento,conta);
+						ItensPedido itensPedido = new ItensPedido(preçoProduto,produto,quantidadeProdutos,tipoPagamento,contaTipo);
 						itensPedidoList.add(itensPedido);
 					}
 					LocalDateTime agora = LocalDateTime.now();

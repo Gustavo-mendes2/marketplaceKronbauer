@@ -139,7 +139,7 @@ public class Main {
 
 					System.out.println("Qual a ID do cliente");
 					int ID = sc.nextInt();
-					Tipo contaTipo;
+					Tipo contaTipo = null;
 					for (Conta conta : contaList){
 						if (conta.getId() == ID){
 							contaTipo = conta.getTier();

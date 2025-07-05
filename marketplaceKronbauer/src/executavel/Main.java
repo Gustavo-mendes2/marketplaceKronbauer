@@ -9,6 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static entidades.Pedido.buscarContaPorId;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -16,9 +18,9 @@ public class Main {
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 		ArrayList<Conta> contaList = new ArrayList<>();
 		ArrayList<Pedido> pedidoArrayList = new ArrayList<>();
-		 ContaVendedor contaVendedor1 = new ContaVendedor(11, "Carla", "Carla@email.com", "Carala123", Tipo.BRONZE, "Renner");
+		ContaVendedor contaVendedor1 = new ContaVendedor(11, "Carla", "Carla@email.com", "Carala123", Tipo.BRONZE, "Renner");
 		ContaVendedor contaVendedor2 = new ContaVendedor(12, "Sara", "Sara@email.com", "Sara123", Tipo.PRATA, "C&A");
-		ContaVendedor contaVendedor3= new ContaVendedor(13, "Laos", "laos@email.com", "laos123", Tipo.PLATINA, "Chanell");
+		ContaVendedor contaVendedor3 = new ContaVendedor(13, "Laos", "laos@email.com", "laos123", Tipo.PLATINA, "Chanell");
 		ContaVendedor contaVendedor4 = new ContaVendedor(14, "Milton", "Milton@email.com", "milton123", Tipo.OURO, "Americanas");
 		ContaVendedor contaVendedor5 = new ContaVendedor(15, "Lara", "Lara@email.com", "lara123", Tipo.PRATA, "Casas Bahia");
 		ContaVendedor contaVendedor6 = new ContaVendedor(16, "João", "João@email.com", "João123", Tipo.BRONZE, "Pernambucanas");
@@ -32,9 +34,9 @@ public class Main {
 		contaList.add(contaVendedor7);
 
 		ContaClient contaClient1 = new ContaClient(1, "Chico", "Chico@email.com", "Chico123", Tipo.OURO, 1234);
-	    ContaClient contaClient2 = new  ContaClient(2, "Gabriel", "Gabriel@email.com", "gabriel123", Tipo.BRONZE, 1235);
+		ContaClient contaClient2 = new ContaClient(2, "Gabriel", "Gabriel@email.com", "gabriel123", Tipo.BRONZE, 1235);
 		ContaClient contaClient3 = new ContaClient(3, "Morissay", "morissay@email.com", "mor123", Tipo.PLATINA, 1236);
-		ContaClient contaClient4 = new ContaClient(4, "Laufey", "laufey@email.com","laufey123", Tipo.DIAMANTE, 1237);
+		ContaClient contaClient4 = new ContaClient(4, "Laufey", "laufey@email.com", "laufey123", Tipo.DIAMANTE, 1237);
 		ContaClient contaClient5 = new ContaClient(5, "Maria", "maria@email.com", "maria123", Tipo.OURO, 1238);
 		ContaClient contaClient6 = new ContaClient(6, "Froid", "froid@email.com", "froid123", Tipo.PRATA, 1239);
 		ContaClient contaClient7 = new ContaClient(7, "Laura", "laura@email.com", "laura123", Tipo.PRATA, 1240);
@@ -60,7 +62,6 @@ public class Main {
 		contaList.add(contaTransportadora5);
 		contaList.add(contaTransportadora6);
 		contaList.add(contaTransportadora7);
-
 		ArrayList<Pedido> pedidos = new ArrayList<>();
 		int op;
 		do {
@@ -71,110 +72,128 @@ public class Main {
 			System.out.println("4- Adicionar um novo pedido");
 
 			op = sc.nextInt();
-			switch (op){
-				case 1:
-					System.out.println(contaList);
-					break;
-				case 2:
-					System.out.println("Digite o id da conta que você quer procurar");
-					int idProcura = sc.nextInt();
-					for (Conta conta : contaList){
-						if (conta.getId() == idProcura){
-							System.out.println(conta);
-						}
-					}
-					break;
-				case 3:
-					System.out.println("Que tipo de conta você quer inserir?(1-Cliente 2-Vendedor 3- Transportadora");
-					int opTipoConta = sc.nextInt();
-					switch (opTipoConta){
-						case 1:
-							System.out.println("Digite o nome");
-							String nome = sc.next();
-							System.out.println("Digite o email");
-							String email = sc.next();
-							System.out.println("Digite a senha");
-							String senha = sc.next();
-							System.out.println("Digite o Tier da conta");
-							Tipo tipo = Tipo.valueOf(sc.next().toUpperCase());
-							System.out.println("Digite o CEP");
-							int CEP = sc.nextInt();
-							System.out.println("Digite o ID");
-							int ID = sc.nextInt();
-							Conta conta = new ContaClient(ID, nome, email, senha, tipo, CEP);
-							contaList.add(conta);
-							break;
-						case 2:
-							System.out.println("Digite o nome");
-							 nome = sc.next();
-							System.out.println("Digite o email");
-					         email = sc.next();
-							System.out.println("Digite a senha");
-							 senha = sc.next();
-							System.out.println("Digite o Tier da conta");
-							 tipo = Tipo.valueOf(sc.next().toUpperCase());
-							System.out.println("Digite a loja");
-							String loja = sc.next();
-							System.out.println("Digite o ID");
-							int id = sc.nextInt();
-							Conta conta1 = new ContaVendedor(id, nome, email, senha, tipo, loja);
-							contaList.add(conta1);
-							break;
-						case 3:
-							System.out.println("Digite o nome");
-							nome = sc.next();
-							System.out.println("Digite o email");
-							 email = sc.next();
-							System.out.println("Digite a senha");
-							 senha = sc.next();
-							System.out.println("Digite o Tier da conta");
-							 tipo = Tipo.valueOf(sc.next().toUpperCase());
-							System.out.println("Digite o ID");
-							 ID = sc.nextInt();
-							Conta conta2 = new ContaTransportadora(ID, nome, email, senha, tipo, 0);
-							contaList.add(conta2);
-							break;
-					}
-				case 4:
+			switch (op) {
+                case 1:
+                    System.out.println(contaList);
+                    break;
+                case 2:
+                    System.out.println("Digite o id da conta que você quer procurar");
+                    int idProcura = sc.nextInt();
+                    for (Conta conta : contaList) {
+                        if (conta.getId() == idProcura) {
+                            System.out.println(conta);
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.println("Que tipo de conta você quer inserir?(1-Cliente 2-Vendedor 3- Transportadora");
+                    int opTipoConta = sc.nextInt();
+                    int ID;
+                    switch (opTipoConta) {
+                        case 1:
+                            System.out.println("Digite o nome");
+                            String nome = sc.next();
+                            System.out.println("Digite o email");
+                            String email = sc.next();
+                            System.out.println("Digite a senha");
+                            String senha = sc.next();
+                            System.out.println("Digite o Tier da conta");
+                            Tipo tipo = Tipo.valueOf(sc.next().toUpperCase());
+                            System.out.println("Digite o CEP");
+                            int CEP = sc.nextInt();
+                            System.out.println("Digite o ID");
+                            ID = sc.nextInt();
+                            for (Conta conta : contaList) {
+                                if (conta.getId() == ID) {
+                                    System.out.println("Uma conta com esse ID já existe");
+                                } else {
+                                    conta = new ContaClient(ID, nome, email, senha, tipo, CEP);
+                                }
+                            }
+                            break;
+                        case 2:
+                            System.out.println("Digite o nome");
+                            nome = sc.next();
+                            System.out.println("Digite o email");
+                            email = sc.next();
+                            System.out.println("Digite a senha");
+                            senha = sc.next();
+                            System.out.println("Digite o Tier da conta");
+                            tipo = Tipo.valueOf(sc.next().toUpperCase());
+                            System.out.println("Digite a loja");
+                            String loja = sc.next();
+                            System.out.println("Digite o ID");
+                            int id = sc.nextInt();
+                            for (Conta conta10 : contaList) {
+                                if (conta10.getId() == id) {
+                                    System.out.println("Uma conta com esse ID já existe");
+                                } else {
+                                    Conta conta1 = new ContaVendedor(id, nome, email, senha, tipo, loja);
+                                    contaList.add(conta1);
+                                }
+                            }
+                            break;
+                        case 3:
+                            System.out.println("Digite o nome");
+                            nome = sc.next();
+                            System.out.println("Digite o email");
+                            email = sc.next();
+                            System.out.println("Digite a senha");
+                            senha = sc.next();
+                            System.out.println("Digite o Tier da conta");
+                            tipo = Tipo.valueOf(sc.next().toUpperCase());
+                            System.out.println("Digite o ID");
+                            ID = sc.nextInt();
+                            for (Conta conta20 : contaList) {
+                                if (conta20.getId() == ID) {
+                                    System.out.println("Uma conta com esse ID já existe");
+                                } else {
+                                    Conta conta2 = new ContaTransportadora(ID, nome, email, senha, tipo, 0);
+                                    contaList.add(conta2);
+                                }
+                            }
+                            break;
+                    }
+                case 4:
+                    System.out.println("Qual a ID do cliente");
+                    ID = sc.nextInt();
+                    ContaClient contaC = (ContaClient) buscarContaPorId(contaList, ID);
+                    System.out.println("Digite o ID do transportador responsavel");
+                    int IDT = sc.nextInt();
+                    ContaTransportadora contaT = (ContaTransportadora) buscarContaPorId(contaList, IDT);
+                    if (contaC != null) {
+                        if (contaT != null) {
+                            System.out.println("Digite o ID do pedido");
+                            int PedidoID = sc.nextInt();
+                            System.out.println("Quantos produtos tem o pedido");
+                            int qtdProdutos = sc.nextInt();
+                            ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
+                            for (int a = 0; a < qtdProdutos; a++) {
+                                System.out.println("Digite o nome do " + (a + 1) + "° produto");
+                                String nomeProduto = sc.next();
+                                System.out.println("Digite o preço do produto");
+                                double preçoProduto = sc.nextDouble();
+                                System.out.println("Digite o id do produto");
+                                int IDProduto = sc.nextInt();
+                                Produto produto = new Produto(IDProduto, nomeProduto, preçoProduto);
+                                System.out.println("Quantidade:");
+                                int quantidadeProdutos = sc.nextInt();
+                                String tipoPagamento;
+                                Tipo contaTipo = contaC.getTier();
+                                System.out.println("Qual a forma de pagamento ? (C)redito ou (P)ix");
+                                tipoPagamento = sc.next();
+                                ItensPedido itensPedido = new ItensPedido(preçoProduto, produto, quantidadeProdutos, tipoPagamento, contaTipo);
+                                itensPedidoList.add(itensPedido);
+                            }
+                            LocalDateTime agora = LocalDateTime.now();
+                            Pedido pedido = new Pedido(contaC, contaT, agora, PedidoID, itensPedidoList, Status.ENCAMINHADO);
+                            pedidoArrayList.add(pedido);
+                            System.out.println(pedidoArrayList);
+                        }
+                    }
+                    break;
+            }
 
-					System.out.println("Qual a ID do cliente");
-					int ID = sc.nextInt();
-					Tipo contaTipo = null;
-					for (Conta conta : contaList){
-						if (conta.getId() == ID){
-							contaTipo = conta.getTier();
-						}
-					}
-
-					System.out.println("Quantos produtos tem o pedido");
-					int qtdProdutos = sc.nextInt();
-					ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
-					for (int a = 0; a < qtdProdutos; a++){
-						System.out.println("Digite o nome do " + (a+1) +"° produto");
-						String nomeProduto = sc.next();
-						System.out.println("Digite o preço do produto");
-						double preçoProduto = sc.nextDouble();
-						System.out.println("Digite o id do produto");
-						int IDProduto = sc.nextInt();
-						Produto produto = new Produto(IDProduto, nomeProduto, preçoProduto);
-						System.out.println("Quantidade:");
-						int quantidadeProdutos = sc.nextInt();
-
-                        String tipoPagamento;
-
-                        System.out.println("Qual a forma de pagamento ? (C)redito ou (P)ix");
-                        tipoPagamento = sc.next();
-
-						ItensPedido itensPedido = new ItensPedido(preçoProduto,produto,quantidadeProdutos,tipoPagamento,contaTipo);
-						itensPedidoList.add(itensPedido);
-					}
-					LocalDateTime agora = LocalDateTime.now();
-					Pedido pedido = new Pedido(agora, 15, itensPedidoList, Status.ENCAMINHADO);
-					pedidoArrayList.add(pedido);
-					System.out.println(pedidoArrayList);
-			}
-		}while (op != 0);
-
-    }
-
+		}while(op != 0);
+	}
 }

@@ -2,7 +2,6 @@ package entidades;
 
 import entidades.enumeradas.Status;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +11,41 @@ public class Pedido {
     private LocalDateTime data;
     private Status status;
     private Double total = 0.00;
+    private ContaTransportadora contaTransportadora;
+    private ContaClient contaClient;
     List<ItensPedido> itensPedidoList = new ArrayList<>();
+    public static Conta buscarContaPorId(ArrayList<Conta> lista, int id) {
+        for (Conta conta : lista) {
+            if (conta.getId() == id) {
+                return conta;
+            }
+        }
+        return null; // caso não encontre
+    }
 
-    public Pedido(LocalDateTime data, Integer IDPedido, List<ItensPedido> itensPedidoList, Status status) {
+    public Pedido(ContaClient contaClient, ContaTransportadora contaTransportadora, LocalDateTime data, Integer IDPedido, List<ItensPedido> itensPedidoList, Status status) {
+        this.contaClient = contaClient;
+        this.contaTransportadora = contaTransportadora;
         this.data = data;
         this.IDPedido = IDPedido;
         this.itensPedidoList = itensPedidoList;
         this.status = status;
+    }
+
+    public ContaClient getContaClient() {
+        return contaClient;
+    }
+
+    public void setContaClient(ContaClient contaClient) {
+        this.contaClient = contaClient;
+    }
+
+    public ContaTransportadora getContaTransportadora() {
+        return contaTransportadora;
+    }
+
+    public void setContaTransportadora(ContaTransportadora contaTransportadora) {
+        this.contaTransportadora = contaTransportadora;
     }
 
     public LocalDateTime getData() {
@@ -69,7 +96,7 @@ public class Pedido {
     }
     public Double valorTotal(){
         for (ItensPedido itensPedido : itensPedidoList){
-            total += itensPedido.totalPedido();
+            total += itensPedido.precoFinal();
         }
         return total;
         }

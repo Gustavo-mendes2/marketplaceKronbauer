@@ -140,9 +140,9 @@ public class Main {
 					System.out.println("Qual a ID do cliente");
 					int ID = sc.nextInt();
 
-					for (conta : contaList){
+					for (x : contaList){
 						if (conta.getId() == ID){
-							return conta;
+							return Conta conta = x ;
 						}
 					}
 
@@ -174,6 +174,8 @@ public class Main {
 					System.out.println(pedidoArrayList);
 			}
 		}while (op != 0);
+
+		sc.close();
 
     }
 

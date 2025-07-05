@@ -5,7 +5,7 @@ import entidades.enumeradas.Tipo;
 
 public class ServiçoPagamentoPix implements ServiçoPagamento{
 
-  @override
+  @Override
   public double Pagamento(Conta conta, Double PagamentoTotal) {
       if (conta.getTier() == Tipo.BRONZE){
           return PagamentoTotal * 1.20;

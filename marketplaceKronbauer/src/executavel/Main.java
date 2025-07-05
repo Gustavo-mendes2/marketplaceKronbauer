@@ -139,10 +139,10 @@ public class Main {
 
 					System.out.println("Qual a ID do cliente");
 					int ID = sc.nextInt();
-
-					for (x : contaList){
+					Tipo contaTipo;
+					for (Conta conta : contaList){
 						if (conta.getId() == ID){
-							return Conta conta = x ;
+							contaTipo = conta.getTier();
 						}
 					}
 
@@ -174,8 +174,6 @@ public class Main {
 					System.out.println(pedidoArrayList);
 			}
 		}while (op != 0);
-
-		sc.close();
 
     }
 

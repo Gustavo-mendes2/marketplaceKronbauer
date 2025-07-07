@@ -4,10 +4,12 @@ import entidades.enumeradas.Tipo;
 
 public class ContaClient extends Conta {
     private Integer endereço;
+    private Tipo tier;
 
     public ContaClient(Integer id, String nome, String email, String senha, Tipo tier, Integer endereço) {
-        super(id, nome, email, senha, tier);
+        super(id, nome, email, senha);
         this.endereço = endereço;
+        this.tier = tier;
     }
 
     public Integer getEndereço() {
@@ -17,6 +19,9 @@ public class ContaClient extends Conta {
     public void setEndereço(Integer endereço) {
         this.endereço = endereço;
     }
+
+    public Tipo getTier() { return tier; }
+
     @Override
     public String toString() {
         return "\n" +

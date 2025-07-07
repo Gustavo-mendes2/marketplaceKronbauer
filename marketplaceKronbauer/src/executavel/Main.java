@@ -18,13 +18,13 @@ public class Main {
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 		ArrayList<Conta> contaList = new ArrayList<>();
 		ArrayList<Pedido> pedidoArrayList = new ArrayList<>();
-		ContaVendedor contaVendedor1 = new ContaVendedor(11, "Carla", "Carla@email.com", "Carala123", Tipo.BRONZE, "Renner");
-		ContaVendedor contaVendedor2 = new ContaVendedor(12, "Sara", "Sara@email.com", "Sara123", Tipo.PRATA, "C&A");
-		ContaVendedor contaVendedor3 = new ContaVendedor(13, "Laos", "laos@email.com", "laos123", Tipo.PLATINA, "Chanell");
-		ContaVendedor contaVendedor4 = new ContaVendedor(14, "Milton", "Milton@email.com", "milton123", Tipo.OURO, "Americanas");
-		ContaVendedor contaVendedor5 = new ContaVendedor(15, "Lara", "Lara@email.com", "lara123", Tipo.PRATA, "Casas Bahia");
-		ContaVendedor contaVendedor6 = new ContaVendedor(16, "João", "João@email.com", "João123", Tipo.BRONZE, "Pernambucanas");
-		ContaVendedor contaVendedor7 = new ContaVendedor(17, "Bob", "Bob@email.com", "bob123", Tipo.OURO, "Target");
+		ContaVendedor contaVendedor1 = new ContaVendedor(11, "Carla", "Carla@email.com", "Carala123", "Renner");
+		ContaVendedor contaVendedor2 = new ContaVendedor(12, "Sara", "Sara@email.com", "Sara123", "C&A");
+		ContaVendedor contaVendedor3 = new ContaVendedor(13, "Laos", "laos@email.com", "laos123",  "Chanell");
+		ContaVendedor contaVendedor4 = new ContaVendedor(14, "Milton", "Milton@email.com", "milton123", "Americanas");
+		ContaVendedor contaVendedor5 = new ContaVendedor(15, "Lara", "Lara@email.com", "lara123", "Casas Bahia");
+		ContaVendedor contaVendedor6 = new ContaVendedor(16, "João", "João@email.com", "João123", "Pernambucanas");
+		ContaVendedor contaVendedor7 = new ContaVendedor(17, "Bob", "Bob@email.com", "bob123",  "Target");
 		contaList.add(contaVendedor1);
 		contaList.add(contaVendedor2);
 		contaList.add(contaVendedor3);
@@ -48,13 +48,13 @@ public class Main {
 		contaList.add(contaClient6);
 		contaList.add(contaClient7);
 
-		ContaTransportadora contaTransportadora1 = new ContaTransportadora(21, "Mariana", "Marina@email.com", "marina123", Tipo.DIAMANTE, 1);
-		ContaTransportadora contaTransportadora2 = new ContaTransportadora(22, "Cartola", "Cartola@email.com", "cartola123", Tipo.OURO, 3);
-		ContaTransportadora contaTransportadora3 = new ContaTransportadora(23, "Samuel", "samuel@email.com", "samuel123", Tipo.PLATINA, 1);
-		ContaTransportadora contaTransportadora4 = new ContaTransportadora(24, "Henry", "henry@email.com", "henry123", Tipo.PRATA, 4);
-		ContaTransportadora contaTransportadora5 = new ContaTransportadora(25, "Olivia", "Oliviaa@email.com", "olivia123", Tipo.DIAMANTE, 2);
-		ContaTransportadora contaTransportadora6 = new ContaTransportadora(26, "Rodrigo", "Rodrigo@email.com", "rodrigo123", Tipo.BRONZE, 10);
-		ContaTransportadora contaTransportadora7 = new ContaTransportadora(27, "Cícero", "cicero@email.com", "cicero123", Tipo.PRATA, 5);
+		ContaTransportadora contaTransportadora1 = new ContaTransportadora(21, "Mariana", "Marina@email.com", "marina123",1);
+		ContaTransportadora contaTransportadora2 = new ContaTransportadora(22, "Cartola", "Cartola@email.com", "cartola123", 3);
+		ContaTransportadora contaTransportadora3 = new ContaTransportadora(23, "Samuel", "samuel@email.com", "samuel123", 1);
+		ContaTransportadora contaTransportadora4 = new ContaTransportadora(24, "Henry", "henry@email.com", "henry123",  4);
+		ContaTransportadora contaTransportadora5 = new ContaTransportadora(25, "Olivia", "Oliviaa@email.com", "olivia123", 2);
+		ContaTransportadora contaTransportadora6 = new ContaTransportadora(26, "Rodrigo", "Rodrigo@email.com", "rodrigo123", 10);
+		ContaTransportadora contaTransportadora7 = new ContaTransportadora(27, "Cícero", "cicero@email.com", "cicero123", 5);
 		contaList.add(contaTransportadora1);
 		contaList.add(contaTransportadora2);
 		contaList.add(contaTransportadora3);
@@ -128,7 +128,7 @@ public class Main {
                                 if (conta10.getId() == id) {
                                     System.out.println("Uma conta com esse ID já existe");
                                 } else {
-                                    Conta conta1 = new ContaVendedor(id, nome, email, senha, tipo, loja);
+                                    Conta conta1 = new ContaVendedor(id, nome, email, senha, loja);
                                     contaList.add(conta1);
                                 }
                             }
@@ -148,7 +148,7 @@ public class Main {
                                 if (conta20.getId() == ID) {
                                     System.out.println("Uma conta com esse ID já existe");
                                 } else {
-                                    Conta conta2 = new ContaTransportadora(ID, nome, email, senha, tipo, 0);
+                                    Conta conta2 = new ContaTransportadora(ID, nome, email, senha, 0);
                                     contaList.add(conta2);
                                 }
                             }

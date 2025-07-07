@@ -5,8 +5,8 @@ import entidades.enumeradas.Tipo;
 public class ContaVendedor extends Conta{
     private String loja;
 
-    public ContaVendedor(Integer id, String nome, String email, String senha, Tipo tier,  String loja) {
-        super(id, nome, email, senha, tier);
+    public ContaVendedor(Integer id, String nome, String email, String senha, String loja) {
+        super(id, nome, email, senha);
         this.loja = loja;
     }
 
@@ -24,8 +24,6 @@ public class ContaVendedor extends Conta{
                 "Nome: " + getNome() +
                 "\n" +
                 "Email: " + getEmail() +
-                "\n" +
-                "Tier: " +getTier() +
                 "\n" +
                 "Loja: " + loja;
     }

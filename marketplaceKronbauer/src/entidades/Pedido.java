@@ -1,6 +1,9 @@
 package entidades;
 
 import entidades.enumeradas.Status;
+import serviços.ServiçoPagamento;
+import serviços.ServiçoPagamentoCrédito;
+import serviços.ServiçoPagamentoPix;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,9 +13,10 @@ public class Pedido {
     private Integer IDPedido;
     private LocalDateTime data;
     private Status status;
-    private Double total = 0.00;
+    private Double total;
     private ContaTransportadora contaTransportadora;
     private ContaClient contaClient;
+    private Character formaDPagamento;
     List<ItensPedido> itensPedidoList = new ArrayList<>();
     public static Conta buscarContaPorId(ArrayList<Conta> lista, int id) {
         for (Conta conta : lista) {
@@ -23,13 +27,22 @@ public class Pedido {
         return null; // caso não encontre
     }
 
-    public Pedido(ContaClient contaClient, ContaTransportadora contaTransportadora, LocalDateTime data, Integer IDPedido, List<ItensPedido> itensPedidoList, Status status) {
+    public Pedido(ContaClient contaClient, ContaTransportadora contaTransportadora, LocalDateTime data, Character formaDPagamento, Integer IDPedido, List<ItensPedido> itensPedidoList, Status status) {
         this.contaClient = contaClient;
         this.contaTransportadora = contaTransportadora;
         this.data = data;
+        this.formaDPagamento = formaDPagamento;
         this.IDPedido = IDPedido;
         this.itensPedidoList = itensPedidoList;
         this.status = status;
+    }
+
+    public Character getFormaDPagamento() {
+        return formaDPagamento;
+    }
+
+    public void setFormaDPagamento(Character formaDPagamento) {
+        this.formaDPagamento = formaDPagamento;
     }
 
     public ContaClient getContaClient() {
@@ -95,11 +108,25 @@ public class Pedido {
         itensPedidoList.remove(item);
     }
     public Double valorTotal(){
+        total = 0.0;
         for (ItensPedido itensPedido : itensPedidoList){
-            total += itensPedido.precoFinal();
+            total += itensPedido.totalPedido();
         }
-        return total;
+        return 0.0;
+    }
+    public Double precoFinal(){
+        ServiçoPagamento ServicoPagamento;
+        valorTotal();
+        if (Character.toLowerCase(formaDPagamento) == 'c'){
+            ServicoPagamento = new ServiçoPagamentoCrédito();
+            return ServicoPagamento.Pagamento(contaClient.getTier(), total);
         }
+        if (Character.toLowerCase(formaDPagamento) == 'c'){
+            ServicoPagamento = new ServiçoPagamentoPix();
+            return ServicoPagamento.Pagamento(contaClient.getTier(), total);
+        }
+        return 0.00;
+    }
 
     @Override
     public String toString() {
@@ -107,7 +134,7 @@ public class Pedido {
                 "data=" + data +
                 ", IDPedido=" + IDPedido +
                 ", status=" + status +
-                ", total=" + valorTotal() +
+                ", total=" + precoFinal() +
                 ", itensPedidoList=" + itensPedidoList +
                 '}';
     }

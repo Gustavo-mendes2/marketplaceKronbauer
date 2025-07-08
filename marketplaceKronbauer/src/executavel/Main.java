@@ -7,6 +7,7 @@ import entidades.enumeradas.Tipo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 import static entidades.Pedido.buscarContaPorId;
@@ -77,11 +78,36 @@ public class Main {
                     System.out.println(contaList);
                     break;
                 case 2:
-                    System.out.println("Digite o id da conta que você quer procurar");
-                    int idProcura = sc.nextInt();
-                    for (Conta conta : contaList) {
-                        if (conta.getId() == idProcura) {
-                            System.out.println(conta);
+                    System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-NOME 2-ID DE CONTA");
+                    int opListar = sc.nextInt();
+                    System.out.println("Você quer listar ou procurar uma instancia especifica?(1-INSTANCIA 2-LISTAR TODOS");
+                    int opListarEcolha = sc.nextInt();
+                    if (opListarEcolha == 1) {
+                        if (opListar == 1) {
+                            System.out.println("Digite o id da conta que você quer procurar");
+                            int idProcura = sc.nextInt();
+                            for (Conta conta : contaList) {
+                                if (conta.getId() == idProcura) {
+                                    System.out.println(conta);
+                                }
+                            }
+                        }
+                        if (opListar == 2) {
+                            System.out.println("Digite o nome da conta que você quer procurar");
+                            String nomeContaProcura = sc.next();
+                            for (Conta conta1 : contaList){
+                                if (conta1.getNome().equalsIgnoreCase(nomeContaProcura)){
+                                    System.out.println(conta1);
+                                }
+                            }
+                        }
+                    }
+                    if (opListarEcolha == 2){
+                        if(opListar == 1){
+                          System.out.println(contaList);
+                        }
+                        if (opListar == 2){
+                            System.out.println(contaList);
                         }
                     }
                     break;
@@ -178,15 +204,13 @@ public class Main {
                                 Produto produto = new Produto(IDProduto, nomeProduto, preçoProduto);
                                 System.out.println("Quantidade:");
                                 int quantidadeProdutos = sc.nextInt();
-                                String tipoPagamento;
-                                Tipo contaTipo = contaC.getTier();
-                                System.out.println("Qual a forma de pagamento ? (C)redito ou (P)ix");
-                                tipoPagamento = sc.next();
-                                ItensPedido itensPedido = new ItensPedido(preçoProduto, produto, quantidadeProdutos, tipoPagamento, contaTipo);
+                                ItensPedido itensPedido = new ItensPedido(preçoProduto, produto, quantidadeProdutos);
                                 itensPedidoList.add(itensPedido);
                             }
+                            System.out.println("Digite a forma de pagamento (C) ou (P)");
+                            char formaScan = sc.next().charAt(0);
                             LocalDateTime agora = LocalDateTime.now();
-                            Pedido pedido = new Pedido(contaC, contaT, agora, PedidoID, itensPedidoList, Status.ENCAMINHADO);
+                            Pedido pedido = new Pedido(contaC, contaT, agora, formaScan, PedidoID, itensPedidoList, Status.ENCAMINHADO);
                             pedidoArrayList.add(pedido);
                             System.out.println(pedidoArrayList);
                         }

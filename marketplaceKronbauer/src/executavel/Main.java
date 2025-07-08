@@ -66,9 +66,8 @@ public class Main {
 		ArrayList<Pedido> pedidos = new ArrayList<>();
 		int op;
 		do {
-			System.out.println("Escolha uma opção");
-			System.out.println("1- Listar todas contas registradas");
-			System.out.println("2- Procurar conta especifica por ID");
+			System.out.println("1- Alterar pedio ou conta");
+			System.out.println("2- Listar");
 			System.out.println("3- Adicionar nova conta");
 			System.out.println("4- Adicionar um novo pedido");
 
@@ -151,7 +150,7 @@ public class Main {
                     }
                     break;
                 case 2:
-                    System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-NOME 2-ID DE CONTA");
+                    System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-ID DE CONTA 2-NOME DA CONTA");
                     int opListar = sc.nextInt();
                     System.out.println("Você quer listar ou procurar uma instancia especifica?(1-INSTANCIA 2-LISTAR TODOS");
                     int opListarEcolha = sc.nextInt();
@@ -177,10 +176,27 @@ public class Main {
                     }
                     if (opListarEcolha == 2){
                         if(opListar == 1){
-                          System.out.println(contaList);
+                        System.out.println("Digite o ID mínimo");
+                        int idMin = sc.nextInt();
+                        System.out.println("Digite o ID máximo");
+                        int idMax = sc.nextInt();
+                        if(opListar == 1) {
+                            for (Conta conta : contaList) {
+                                if (conta.getId() >= idMin && conta.getId() <= idMax) {
+                                    System.out.println(conta);
+                                }
+                            }
+                        }
                         }
                         if (opListar == 2){
-                            System.out.println(contaList);
+                            System.out.println("Digite a letra inicial dos nomes que você quer listar:");
+                            char letraInicial = sc.next().toLowerCase().charAt(0);
+                            for (Conta conta : contaList) {
+                                if (!conta.getNome().isEmpty() &&
+                                        Character.toLowerCase(conta.getNome().charAt(0)) == letraInicial) {
+                                    System.out.println(conta);
+                                }
+                            }
                         }
                     }
                     break;

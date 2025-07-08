@@ -65,7 +65,7 @@ public class Main {
 		ArrayList<Pedido> pedidos = new ArrayList<>();
 		int op;
 		do {
-			System.out.println("1- Alterar pedio ou conta");
+			System.out.println("1- Alterar pedido ou conta");
 			System.out.println("2- Listar");
 			System.out.println("3- Adicionar nova conta");
 			System.out.println("4- Adicionar um novo pedido");
@@ -203,7 +203,7 @@ public class Main {
                         }
                     }
                     if(opListagem == 2){
-                        System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-INSTANCIA 2-LISTAR");
+                        System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-INSTANCIA 2-LISTAR)");
                         int opListarPedidoL = sc.nextInt();
                         if(opListarPedidoL == 1){
                             System.out.println("Digite por qual variavel você quer buscar o pedido (1-ID 2-Nome do cliente 3-Nome da transportadora)");

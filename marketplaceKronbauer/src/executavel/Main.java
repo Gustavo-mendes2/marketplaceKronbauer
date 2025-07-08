@@ -7,7 +7,6 @@ import entidades.enumeradas.Tipo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Scanner;
 
 import static entidades.Pedido.buscarContaPorId;
@@ -296,10 +295,19 @@ public class Main {
                                 ItensPedido itensPedido = new ItensPedido(preçoProduto, produto, quantidadeProdutos);
                                 itensPedidoList.add(itensPedido);
                             }
-                            System.out.println("Digite a forma de pagamento (C) ou (P)");
-                            char formaScan = sc.next().charAt(0);
+                            System.out.println("Digite a forma de pagamento (C)rédito, (P)ix e (D)ébito");
+                            Character formaScan = sc.next().charAt(0);
                             LocalDateTime agora = LocalDateTime.now();
-                            Pedido pedido = new Pedido(contaC, contaT, agora, formaScan, PedidoID, itensPedidoList, Status.ENCAMINHADO);
+                            int parcelas = 1;
+                            if (Character.toLowerCase(formaScan) == 'c'){
+                                System.out.println("Quantas parcelas ? (Máximo de 12)");
+                                parcelas = sc.nextInt();
+
+                                if (parcelas > 12){
+                                    parcelas = 12;
+                                }
+                            }
+                            Pedido pedido = new Pedido(contaC, contaT, agora, formaScan, PedidoID, itensPedidoList, Status.ENCAMINHADO, parcelas);
                             pedidoArrayList.add(pedido);
                             System.out.println(pedidoArrayList);
                         }

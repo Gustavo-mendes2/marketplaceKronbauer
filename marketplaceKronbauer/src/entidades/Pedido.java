@@ -3,6 +3,7 @@ package entidades;
 import entidades.enumeradas.Status;
 import serviços.ServiçoPagamento;
 import serviços.ServiçoPagamentoCrédito;
+import serviços.ServiçoPagamentoDebito;
 import serviços.ServiçoPagamentoPix;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ public class Pedido {
     private ContaTransportadora contaTransportadora;
     private ContaClient contaClient;
     private Character formaDPagamento;
+    private Integer parcelas;
     List<ItensPedido> itensPedidoList = new ArrayList<>();
     public static Conta buscarContaPorId(ArrayList<Conta> lista, int id) {
         for (Conta conta : lista) {
@@ -27,7 +29,7 @@ public class Pedido {
         return null; // caso não encontre
     }
 
-    public Pedido(ContaClient contaClient, ContaTransportadora contaTransportadora, LocalDateTime data, Character formaDPagamento, Integer IDPedido, List<ItensPedido> itensPedidoList, Status status) {
+    public Pedido(ContaClient contaClient, ContaTransportadora contaTransportadora, LocalDateTime data, Character formaDPagamento, Integer IDPedido, List<ItensPedido> itensPedidoList, Status status, Integer parcelas) {
         this.contaClient = contaClient;
         this.contaTransportadora = contaTransportadora;
         this.data = data;
@@ -35,6 +37,7 @@ public class Pedido {
         this.IDPedido = IDPedido;
         this.itensPedidoList = itensPedidoList;
         this.status = status;
+        this.parcelas = parcelas;
     }
 
     public Character getFormaDPagamento() {
@@ -119,17 +122,32 @@ public class Pedido {
         valorTotal();
         if (Character.toLowerCase(formaDPagamento) == 'c'){
             ServicoPagamento = new ServiçoPagamentoCrédito();
-            return ServicoPagamento.Pagamento(contaClient.getTier(), total);
+            double valorSemJuros = ServicoPagamento.Pagamento(contaClient.getTier(), total);
+            return ((ServiçoPagamentoCrédito) ServicoPagamento).Parcelamento(valorSemJuros, this.parcelas);
         }
-        if (Character.toLowerCase(formaDPagamento) == 'c'){
+        if (Character.toLowerCase(formaDPagamento) == 'p'){
             ServicoPagamento = new ServiçoPagamentoPix();
             return ServicoPagamento.Pagamento(contaClient.getTier(), total);
+        }
+        if(Character.toLowerCase(formaDPagamento) == 'd'){
+            ServicoPagamento = new ServiçoPagamentoDebito();
+            return ServicoPagamento.Pagamento(contaClient.getTier(), total);
+
         }
         return 0.00;
     }
 
     @Override
     public String toString() {
+        if(Character.toLowerCase(formaDPagamento) == 'c'){
+            return "Pedido{" +
+                    "data=" + data +
+                    ", IDPedido=" + IDPedido +
+                    ", status=" + status +
+                    ", total=" + parcelas + "*" + precoFinal() +
+                    ", itensPedidoList=" + itensPedidoList +
+                    '}';
+        }
         return "Pedido{" +
                 "data=" + data +
                 ", IDPedido=" + IDPedido +

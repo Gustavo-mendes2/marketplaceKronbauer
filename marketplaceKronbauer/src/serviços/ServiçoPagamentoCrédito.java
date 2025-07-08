@@ -22,4 +22,13 @@ public class ServiçoPagamentoCrédito implements ServiçoPagamento {
         }
         return 0;
     }
+
+    public double Parcelamento( Double PagamentoTotal, Integer parcelas){
+
+        double valorComJuros=0;
+
+        valorComJuros = (PagamentoTotal/parcelas) + (PagamentoTotal * 0.10);
+
+        return valorComJuros;
+}
 }

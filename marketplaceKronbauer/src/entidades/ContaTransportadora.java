@@ -20,6 +20,7 @@ public class ContaTransportadora extends Conta {
     @Override
     public String toString() {
         return "\nInformações da conta:" +
+                "ID" + getId() +
                 "Nome: " + getNome() +
                 "\n" +
                 "Email: " + getEmail() +

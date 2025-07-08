@@ -21,6 +21,7 @@ public class ContaVendedor extends Conta{
     @Override
     public String toString() {
         return "Informações da conta:" +
+                "ID:" + getId() +
                 "Nome: " + getNome() +
                 "\n" +
                 "Email: " + getEmail() +

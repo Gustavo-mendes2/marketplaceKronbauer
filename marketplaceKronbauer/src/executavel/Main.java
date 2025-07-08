@@ -149,54 +149,127 @@ public class Main {
                     }
                     break;
                 case 2:
-                    System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-ID DE CONTA 2-NOME DA CONTA");
-                    int opListar = sc.nextInt();
-                    System.out.println("Você quer listar ou procurar uma instancia especifica?(1-INSTANCIA 2-LISTAR TODOS");
-                    int opListarEcolha = sc.nextInt();
-                    if (opListarEcolha == 1) {
-                        if (opListar == 1) {
-                            System.out.println("Digite o id da conta que você quer procurar");
-                            int idProcura = sc.nextInt();
-                            for (Conta conta : contaList) {
-                                if (conta.getId() == idProcura) {
-                                    System.out.println(conta);
+                    System.out.println("Você quer listar a contas(1) ou o pedidos(2)");
+                    int opListagem = sc.nextInt();
+                    if(opListagem == 1){
+                        System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-ID DE CONTA 2-NOME DA CONTA");
+                        int opListar = sc.nextInt();
+                        System.out.println("Você quer listar ou procurar uma instancia especifica?(1-INSTANCIA 2-LISTAR");
+                        int opListarEcolha = sc.nextInt();
+                        if (opListarEcolha == 1) {
+                            if (opListar == 1) {
+                                System.out.println("Digite o id da conta que você quer procurar");
+                                int idProcura = sc.nextInt();
+                                for (Conta conta : contaList) {
+                                    if (conta.getId() == idProcura) {
+                                        System.out.println(conta);
+                                    }
+                                }
+                            }
+                            if (opListar == 2) {
+                                System.out.println("Digite o nome da conta que você quer procurar");
+                                String nomeContaProcura = sc.next();
+                                for (Conta conta1 : contaList){
+                                    if (conta1.getNome().equalsIgnoreCase(nomeContaProcura)){
+                                        System.out.println(conta1);
+                                    }
                                 }
                             }
                         }
-                        if (opListar == 2) {
-                            System.out.println("Digite o nome da conta que você quer procurar");
-                            String nomeContaProcura = sc.next();
-                            for (Conta conta1 : contaList){
-                                if (conta1.getNome().equalsIgnoreCase(nomeContaProcura)){
-                                    System.out.println(conta1);
+                        if (opListarEcolha == 2){
+                            if(opListar == 1){
+                                System.out.println("Digite o ID mínimo");
+                                int idMin = sc.nextInt();
+                                System.out.println("Digite o ID máximo");
+                                int idMax = sc.nextInt();
+                                if(opListar == 1) {
+                                    for (Conta conta : contaList) {
+                                        if (conta.getId() >= idMin && conta.getId() <= idMax) {
+                                            System.out.println(conta);
+                                        }
+                                    }
+                                }
+                            }
+                            if (opListar == 2){
+                                System.out.println("Digite a letra inicial dos nomes que você quer listar:");
+                                char letraInicial = sc.next().toLowerCase().charAt(0);
+                                for (Conta conta : contaList) {
+                                    if (!conta.getNome().isEmpty() &&
+                                            Character.toLowerCase(conta.getNome().charAt(0)) == letraInicial) {
+                                        System.out.println(conta);
+                                    }
                                 }
                             }
                         }
                     }
-                    if (opListarEcolha == 2){
-                        if(opListar == 1){
-                        System.out.println("Digite o ID mínimo");
-                        int idMin = sc.nextInt();
-                        System.out.println("Digite o ID máximo");
-                        int idMax = sc.nextInt();
-                        if(opListar == 1) {
-                            for (Conta conta : contaList) {
-                                if (conta.getId() >= idMin && conta.getId() <= idMax) {
-                                    System.out.println(conta);
+                    if(opListagem == 2){
+                        System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-INSTANCIA 2-LISTAR");
+                        int opListarPedidoL = sc.nextInt();
+                        if(opListarPedidoL == 1){
+                            System.out.println("Digite por qual variavel você quer buscar o pedido (1-ID 2-Nome do cliente 3-Nome da transportadora)");
+                            int opListarPedido = sc.nextInt();
+                            if(opListarPedido == 1){
+                                System.out.println("Digite o ID que deseja procurar");
+                                int idPedidoProcura = sc.nextInt();
+                                for (Pedido pedidoListagem : pedidoArrayList){
+                                    if (idPedidoProcura == pedidoListagem.getIDPedido()){
+                                        System.out.println(pedidoListagem);
+                                    }
+                                }
+                            }
+                            if (opListarPedido == 2){
+                                System.out.println("Digite o nome do cliente");
+                                String nomeClienteP = sc.next();
+                                for (Pedido pedidoListagem1 : pedidoArrayList){
+                                    if(pedidoListagem1.getContaClient().getNome().equalsIgnoreCase(nomeClienteP)){
+                                        System.out.println(pedidoListagem1);
+                                    }
+                                }
+                            }
+                            if(opListarPedido == 3){
+                                System.out.println("Digite o nome do motorista");
+                                String nomeMotoP = sc.next();
+                                for (Pedido pedidoListagem2 : pedidoArrayList){
+                                    if (pedidoListagem2.getContaTransportadora().getNome().equalsIgnoreCase(nomeMotoP)){
+                                        System.out.println(pedidoListagem2);
+                                    }
                                 }
                             }
                         }
-                        }
-                        if (opListar == 2){
-                            System.out.println("Digite a letra inicial dos nomes que você quer listar:");
-                            char letraInicial = sc.next().toLowerCase().charAt(0);
-                            for (Conta conta : contaList) {
-                                if (!conta.getNome().isEmpty() &&
-                                        Character.toLowerCase(conta.getNome().charAt(0)) == letraInicial) {
-                                    System.out.println(conta);
+                        if(opListarPedidoL == 2){
+                            System.out.println("Digite por qual variavel você quer buscar o pedido (1-ID 2-Nome do cliente 3-Nome da transportadora)");
+                            int opListarPedido2 = sc.nextInt();
+                            if (opListarPedido2 == 1){
+                                System.out.println("Digite o ID mínimo");
+                                int idMin = sc.nextInt();
+                                System.out.println("Digite o ID máximo");
+                                int idMax = sc.nextInt();
+                                    for (Pedido pedidolistagem : pedidoArrayList) {
+                                        if (pedidolistagem.getIDPedido() >= idMin && pedidolistagem.getIDPedido() <= idMax) {
+                                            System.out.println(pedidolistagem);
+                                        }
+                                    }
+                            }
+                            if (opListarPedido2 == 2){
+                                System.out.println("Digite o nome do cliente");
+                                String nomeClienteL = sc.next();
+                                for (Pedido pedidolistagem : pedidoArrayList){
+                                    if(pedidolistagem.getContaClient().getNome().equalsIgnoreCase(nomeClienteL)){
+                                        System.out.println(pedidolistagem);
+                                    }
+                                }
+                            }
+                            if(opListarPedido2 == 3){
+                                System.out.println("Digite o nome do motorista");
+                                String nomeMotoristaL = sc.next();
+                                for (Pedido pedidoListagem : pedidoArrayList){
+                                    if (pedidoListagem.getContaTransportadora().getNome().equalsIgnoreCase(nomeMotoristaL)){
+                                        System.out.println(pedidoListagem);
+                                    }
                                 }
                             }
                         }
+
                     }
                     break;
                 case 3:
@@ -275,41 +348,46 @@ public class Main {
                     System.out.println("Digite o ID do transportador responsavel");
                     int IDT = sc.nextInt();
                     ContaTransportadora contaT = (ContaTransportadora) buscarContaPorId(contaList, IDT);
+                    System.out.println("Digite o ID do vendedor responsavel");
+                    int IDV = sc.nextInt();
+                    ContaVendedor contaV = (ContaVendedor) buscarContaPorId(contaList, IDV);
                     if (contaC != null) {
                         if (contaT != null) {
-                            System.out.println("Digite o ID do pedido");
-                            int PedidoID = sc.nextInt();
-                            System.out.println("Quantos produtos tem o pedido");
-                            int qtdProdutos = sc.nextInt();
-                            ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
-                            for (int a = 0; a < qtdProdutos; a++) {
-                                System.out.println("Digite o nome do " + (a + 1) + "° produto");
-                                String nomeProduto = sc.next();
-                                System.out.println("Digite o preço do produto");
-                                double preçoProduto = sc.nextDouble();
-                                System.out.println("Digite o id do produto");
-                                int IDProduto = sc.nextInt();
-                                Produto produto = new Produto(IDProduto, nomeProduto, preçoProduto);
-                                System.out.println("Quantidade:");
-                                int quantidadeProdutos = sc.nextInt();
-                                ItensPedido itensPedido = new ItensPedido(preçoProduto, produto, quantidadeProdutos);
-                                itensPedidoList.add(itensPedido);
-                            }
-                            System.out.println("Digite a forma de pagamento (C)rédito, (P)ix e (D)ébito");
-                            Character formaScan = sc.next().charAt(0);
-                            LocalDateTime agora = LocalDateTime.now();
-                            int parcelas = 1;
-                            if (Character.toLowerCase(formaScan) == 'c'){
-                                System.out.println("Quantas parcelas ? (Máximo de 12)");
-                                parcelas = sc.nextInt();
-
-                                if (parcelas > 12){
-                                    parcelas = 12;
+                            if (contaV != null) {
+                                System.out.println("Digite o ID do pedido");
+                                int PedidoID = sc.nextInt();
+                                System.out.println("Quantos produtos tem o pedido");
+                                int qtdProdutos = sc.nextInt();
+                                ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
+                                for (int a = 0; a < qtdProdutos; a++) {
+                                    System.out.println("Digite o nome do " + (a + 1) + "° produto");
+                                    String nomeProduto = sc.next();
+                                    System.out.println("Digite o preço do produto");
+                                    double preçoProduto = sc.nextDouble();
+                                    System.out.println("Digite o id do produto");
+                                    int IDProduto = sc.nextInt();
+                                    Produto produto = new Produto(IDProduto, nomeProduto, preçoProduto);
+                                    System.out.println("Quantidade:");
+                                    int quantidadeProdutos = sc.nextInt();
+                                    ItensPedido itensPedido = new ItensPedido(preçoProduto, produto, quantidadeProdutos);
+                                    itensPedidoList.add(itensPedido);
                                 }
+                                System.out.println("Digite a forma de pagamento (C)rédito, (P)ix e (D)ébito");
+                                Character formaScan = sc.next().charAt(0);
+                                LocalDateTime agora = LocalDateTime.now();
+                                int parcelas = 1;
+                                if (Character.toLowerCase(formaScan) == 'c') {
+                                    System.out.println("Quantas parcelas ? (Máximo de 12)");
+                                    parcelas = sc.nextInt();
+
+                                    if (parcelas > 12) {
+                                        parcelas = 12;
+                                    }
+                                }
+                                Pedido pedido = new Pedido(contaC, contaT, contaV, agora, formaScan, PedidoID, itensPedidoList, parcelas, Status.ENCAMINHADO);
+                                pedidoArrayList.add(pedido);
+                                System.out.println(pedidoArrayList);
                             }
-                            Pedido pedido = new Pedido(contaC, contaT, agora, formaScan, PedidoID, itensPedidoList, Status.ENCAMINHADO, parcelas);
-                            pedidoArrayList.add(pedido);
-                            System.out.println(pedidoArrayList);
                         }
                     }
                     break;

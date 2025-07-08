@@ -19,6 +19,7 @@ public class Pedido {
     private ContaClient contaClient;
     private Character formaDPagamento;
     private Integer parcelas;
+    private ContaVendedor contaVendedor;
     List<ItensPedido> itensPedidoList = new ArrayList<>();
     public static Conta buscarContaPorId(ArrayList<Conta> lista, int id) {
         for (Conta conta : lista) {
@@ -29,15 +30,24 @@ public class Pedido {
         return null; // caso não encontre
     }
 
-    public Pedido(ContaClient contaClient, ContaTransportadora contaTransportadora, LocalDateTime data, Character formaDPagamento, Integer IDPedido, List<ItensPedido> itensPedidoList, Status status, Integer parcelas) {
+    public Pedido(ContaClient contaClient, ContaTransportadora contaTransportadora, ContaVendedor contaVendedor, LocalDateTime data, Character formaDPagamento, Integer IDPedido, List<ItensPedido> itensPedidoList, Integer parcelas, Status status) {
         this.contaClient = contaClient;
         this.contaTransportadora = contaTransportadora;
+        this.contaVendedor = contaVendedor;
         this.data = data;
         this.formaDPagamento = formaDPagamento;
         this.IDPedido = IDPedido;
         this.itensPedidoList = itensPedidoList;
-        this.status = status;
         this.parcelas = parcelas;
+        this.status = status;
+    }
+
+    public ContaVendedor getContaVendedor() {
+        return contaVendedor;
+    }
+
+    public void setContaVendedor(ContaVendedor contaVendedor) {
+        this.contaVendedor = contaVendedor;
     }
 
     public Character getFormaDPagamento() {

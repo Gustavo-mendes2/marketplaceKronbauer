@@ -75,7 +75,80 @@ public class Main {
 			op = sc.nextInt();
 			switch (op) {
                 case 1:
-                    System.out.println(contaList);
+                    System.out.println("Qual objeto você quer alterar(1-CONTA 2-PEDIDO)");
+                    int opAlterar = sc.nextInt();
+                    switch (opAlterar){
+                        case 1:
+                            System.out.println("Digite o ID da conta que você quer alterar");
+                            int scanAlt = sc.nextInt();
+                            for (Conta contaAlterar : contaList){
+                                if (contaAlterar.getId() == scanAlt){
+                                    System.out.println("Digite qual atributo você quer alterar (S)enha, (E)mail, (N)ome, En(D)ereço");
+                                    char opAtributoAlterado = sc.next().charAt(0);
+                                    switch (opAtributoAlterado){
+                                        case 'S':
+                                            System.out.println("Digite a senha nova");
+                                            String senhaNova = sc.next();
+                                            contaAlterar.setSenha(senhaNova);
+                                            break;
+                                        case 'N':
+                                            System.out.println("Digite o novo nome");
+                                            String novoNome = sc.next();
+                                            contaAlterar.setNome(novoNome);
+                                            break;
+                                        case 'E':
+                                            System.out.println("Digite o novo email");
+                                            String novoEmail = sc.next();
+                                            contaAlterar.setEmail(novoEmail);
+                                            break;
+                                    }
+                                }
+                            }
+                            break;
+                        case 2:
+                            System.out.println("Digite o ID pedido que você quer alterar");
+                            scanAlt = sc.nextInt();
+                            for (Pedido pedidoAltera : pedidoArrayList){
+                                if(pedidoAltera.getIDPedido() == scanAlt){
+                                    System.out.println("Qual atributo você quer alterar (S)tatus, (A)dicionar item, (R)emover item");
+                                    char opAltPedido = sc.next().charAt(0);
+                                    switch (opAltPedido){
+                                        case 'S':
+                                            System.out.println("Digite o novo status");
+                                            Status altStatus = Status.valueOf(sc.next());
+                                            pedidoAltera.setStatus(altStatus);
+                                            break;
+                                        case 'A':
+                                            System.out.println("Quantos produtos novos vão ser inseridos");
+                                            int qtdProdutosALT = sc.nextInt();
+                                            for (int a = 0; a < qtdProdutosALT; a++) {
+                                                System.out.println("Digite o nome do " + (a + 1) + "° produto");
+                                                String nomeProdutoALT = sc.next();
+                                                System.out.println("Digite o preço do produto");
+                                                double preçoProdutoALT = sc.nextDouble();
+                                                System.out.println("Digite o id do produto");
+                                                int IDProdutoALT = sc.nextInt();
+                                                Produto produtoALT = new Produto(IDProdutoALT, nomeProdutoALT, preçoProdutoALT);
+                                                System.out.println("Quantidade:");
+                                                int quantidadeProdutosALT = sc.nextInt();
+                                                ItensPedido itensPedidoALT = new ItensPedido(preçoProdutoALT, produtoALT, quantidadeProdutosALT);
+                                                pedidoAltera.addItem(itensPedidoALT);
+                                            }
+                                            break;
+                                        case 'R':
+                                            System.out.println("Escreva o id do produto você deseja remover");
+                                            int idProdutoALT = sc.nextInt();
+                                            for (int i = pedidoAltera.getItensPedidoList().size() - 1; i >= 0; i--){
+                                                ItensPedido item = pedidoAltera.getItensPedidoList().get(i);
+                                                if (item.getProduto().getIdProduto() == idProdutoALT) {
+                                                    pedidoAltera.removeItem(item);
+                                            }
+                                            }
+                                            break;
+                                    }
+                                }
+                            }
+                    }
                     break;
                 case 2:
                     System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-NOME 2-ID DE CONTA");

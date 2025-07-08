@@ -7,6 +7,7 @@ import serviços.ServiçoPagamentoDebito;
 import serviços.ServiçoPagamentoPix;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -174,7 +175,7 @@ public class Pedido {
         }
         sb.append(linha);
         sb.append(String.format("| %-25s | %-32s |\n", "ID do Pedido", IDPedido));
-        sb.append(String.format("| %-25s | %-32s |\n", "Data", data));
+        sb.append(String.format("| %-25s | %-32s |\n", "Data", data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
         sb.append(String.format("| %-25s | %-32s |\n", "Status", status));
         sb.append(String.format("| %-25s | %-32s |\n", "Forma de Pagamento", tipoPagamento));
         sb.append(String.format("| %-25s | %-32s |\n", "Total", totalFormatado));

@@ -2,19 +2,21 @@ package entidades;
 
 import entidades.enumeradas.Tipo;
 
+import java.util.ArrayList;
+
 public abstract class Conta {
     private Integer id;
     private String nome;
     private String email;
     private String senha;
-   // private Tipo tier;
+    // private Tipo tier;
 
     public Conta(Integer id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-      //  this.tier = tier;
+        //  this.tier = tier;
     }
 
     public Integer getId() {
@@ -49,11 +51,13 @@ public abstract class Conta {
         this.senha = senha;
     }
 
-/*    public Tipo getTier() {
-        return tier;
+    public static boolean existeId(ArrayList<Conta> contas, int id) {
+        for (Conta conta : contas) {
+            if (conta.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
-
-    public void setTier(Tipo tier) {
-        this.tier = tier;
-    }*/
 }
+

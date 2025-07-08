@@ -24,18 +24,15 @@ public class ContaClient extends Conta {
 
     @Override
     public String toString() {
-        return "\n" +
-                "Informações da conta:" +
-                "\n" +
-                "Conta cliente" +
-                "\n"
-                +
-                "ID: "+ getId() +
-                "\n" +
-                "Nome: " + getNome() +
-                "\n" +
-                "Email: " + getEmail() +
-                "\n" +
-                "Tier: " +getTier();
+        String linha = "+----------------------+--------------------------+\n";
+        return linha +
+                String.format("| %-20s | %-24s |\n", "Tipo de Conta", "Cliente") +
+                linha +
+                String.format("| %-20s | %-24d |\n", "ID", getId()) +
+                String.format("| %-20s | %-24s |\n", "Nome", getNome()) +
+                String.format("| %-20s | %-24s |\n", "Email", getEmail()) +
+                String.format("| %-20s | %-24s |\n", "Tier", tier) +
+                String.format("| %-20s | %-24s |\n", "Endereço", endereço) +
+                linha;
     }
 }

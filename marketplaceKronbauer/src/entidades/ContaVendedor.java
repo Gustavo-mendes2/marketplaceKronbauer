@@ -19,13 +19,16 @@ public class ContaVendedor extends Conta{
     }
 
     @Override
-    public String toString() {
-        return "Informações da conta:" +
-                "ID:" + getId() +
-                "Nome: " + getNome() +
-                "\n" +
-                "Email: " + getEmail() +
-                "\n" +
-                "Loja: " + loja;
-    }
+        public String toString() {
+            String linha = "+----------------------+--------------------------+\n";
+            return linha +
+                    String.format("| %-20s | %-24s |\n", "Tipo de Conta", "Vendedor") +
+                    linha +
+                    String.format("| %-20s | %-24d |\n", "ID", getId()) +
+                    String.format("| %-20s | %-24s |\n", "Nome", getNome()) +
+                    String.format("| %-20s | %-24s |\n", "Email", getEmail()) +
+                    String.format("| %-20s | %-24s |\n", "Loja", loja) +
+                    linha;
+        }
+
 }

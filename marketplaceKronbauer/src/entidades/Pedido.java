@@ -146,24 +146,47 @@ public class Pedido {
         }
         return 0.00;
     }
-
+    StringBuilder sb = new StringBuilder();
     @Override
     public String toString() {
-        if(Character.toLowerCase(formaDPagamento) == 'c'){
-            return "Pedido{" +
-                    "data=" + data +
-                    ", IDPedido=" + IDPedido +
-                    ", status=" + status +
-                    ", total=" + parcelas + "*" + precoFinal() +
-                    ", itensPedidoList=" + itensPedidoList +
-                    '}';
+        String linha = "+---------------------------+----------------------------------+\n";
+        String tipoPagamento;
+
+        switch (Character.toLowerCase(formaDPagamento)) {
+            case 'c':
+                tipoPagamento = "Crédito";
+                break;
+            case 'p':
+                tipoPagamento = "Pix";
+                break;
+            case 'd':
+                tipoPagamento = "Débito";
+                break;
+            default:
+                tipoPagamento = "Desconhecido";
         }
-        return "Pedido{" +
-                "data=" + data +
-                ", IDPedido=" + IDPedido +
-                ", status=" + status +
-                ", total=" + precoFinal() +
-                ", itensPedidoList=" + itensPedidoList +
-                '}';
+
+        String totalFormatado;
+        if (Character.toLowerCase(formaDPagamento) == 'c') {
+            totalFormatado = parcelas + " x R$ " + String.format("%.2f", precoFinal());
+        } else {
+            totalFormatado = "R$ " + String.format("%.2f", precoFinal());
+        }
+        sb.append(linha);
+        sb.append(String.format("| %-25s | %-32s |\n", "ID do Pedido", IDPedido));
+        sb.append(String.format("| %-25s | %-32s |\n", "Data", data));
+        sb.append(String.format("| %-25s | %-32s |\n", "Status", status));
+        sb.append(String.format("| %-25s | %-32s |\n", "Forma de Pagamento", tipoPagamento));
+        sb.append(String.format("| %-25s | %-32s |\n", "Total", totalFormatado));
+        sb.append(linha);
+        sb.append(String.format("| %-61s |\n", "Itens do Pedido"));
+        sb.append(linha);
+
+        for (ItensPedido item : itensPedidoList) {
+            sb.append(String.format("| %-61s |\n", item));
+        }
+
+        sb.append(linha);
+        return sb.toString();
     }
 }

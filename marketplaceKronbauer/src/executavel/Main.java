@@ -48,13 +48,13 @@ public class Main {
 		contaList.add(contaClient6);
 		contaList.add(contaClient7);
 
-		ContaTransportadora contaTransportadora1 = new ContaTransportadora(21, "Mariana", "Marina@email.com", "marina123",1);
-		ContaTransportadora contaTransportadora2 = new ContaTransportadora(22, "Cartola", "Cartola@email.com", "cartola123", 3);
-		ContaTransportadora contaTransportadora3 = new ContaTransportadora(23, "Samuel", "samuel@email.com", "samuel123", 1);
-		ContaTransportadora contaTransportadora4 = new ContaTransportadora(24, "Henry", "henry@email.com", "henry123",  4);
-		ContaTransportadora contaTransportadora5 = new ContaTransportadora(25, "Olivia", "Oliviaa@email.com", "olivia123", 2);
-		ContaTransportadora contaTransportadora6 = new ContaTransportadora(26, "Rodrigo", "Rodrigo@email.com", "rodrigo123", 10);
-		ContaTransportadora contaTransportadora7 = new ContaTransportadora(27, "Cícero", "cicero@email.com", "cicero123", 5);
+		ContaTransportadora contaTransportadora1 = new ContaTransportadora(21, "Mariana", "Marina@email.com", "marina123","Gol");
+		ContaTransportadora contaTransportadora2 = new ContaTransportadora(22, "Cartola", "Cartola@email.com", "cartola123", "Sedex");
+		ContaTransportadora contaTransportadora3 = new ContaTransportadora(23, "Samuel", "samuel@email.com", "samuel123", "AmericanExpress");
+		ContaTransportadora contaTransportadora4 = new ContaTransportadora(24, "Henry", "henry@email.com", "henry123",  "TransMoveis");
+		ContaTransportadora contaTransportadora5 = new ContaTransportadora(25, "Olivia", "Oliviaa@email.com", "olivia123", "BrasilTrans");
+		ContaTransportadora contaTransportadora6 = new ContaTransportadora(26, "Rodrigo", "Rodrigo@email.com", "rodrigo123", "ExtraExpress");
+		ContaTransportadora contaTransportadora7 = new ContaTransportadora(27, "Cícero", "cicero@email.com", "cicero123", "AmazonDelivery");
 		contaList.add(contaTransportadora1);
 		contaList.add(contaTransportadora2);
 		contaList.add(contaTransportadora3);
@@ -290,12 +290,12 @@ public class Main {
                             int CEP = sc.nextInt();
                             System.out.println("Digite o ID");
                             ID = sc.nextInt();
-                            for (Conta conta : contaList) {
-                                if (conta.getId() == ID) {
-                                    System.out.println("Uma conta com esse ID já existe");
-                                } else {
-                                    conta = new ContaClient(ID, nome, email, senha, tipo, CEP);
-                                }
+                            if(Conta.existeId(contaList, ID)){
+                                System.out.println("Uma conta com esse ID já existe");
+                            }
+                            else {
+                                ContaClient contaClientNOVA = new ContaClient(ID, nome, email, senha, tipo, CEP);
+                                contaList.add(contaClientNOVA);
                             }
                             break;
                         case 2:
@@ -305,20 +305,17 @@ public class Main {
                             email = sc.next();
                             System.out.println("Digite a senha");
                             senha = sc.next();
-                            System.out.println("Digite o Tier da conta");
-                            tipo = Tipo.valueOf(sc.next().toUpperCase());
                             System.out.println("Digite a loja");
                             String loja = sc.next();
                             System.out.println("Digite o ID");
                             int id = sc.nextInt();
-                            for (Conta conta10 : contaList) {
-                                if (conta10.getId() == id) {
-                                    System.out.println("Uma conta com esse ID já existe");
-                                } else {
-                                    Conta conta1 = new ContaVendedor(id, nome, email, senha, loja);
-                                    contaList.add(conta1);
-                                }
-                            }
+                           if(Conta.existeId(contaList, id)){
+                               System.out.println("Uma conta com esse ID já existe");
+                           }
+                           else {
+                               ContaVendedor contaVendedorNOVA = new ContaVendedor(id, nome, email, senha, loja);
+                               contaList.add(contaVendedorNOVA);
+                           }
                             break;
                         case 3:
                             System.out.println("Digite o nome");
@@ -327,20 +324,20 @@ public class Main {
                             email = sc.next();
                             System.out.println("Digite a senha");
                             senha = sc.next();
-                            System.out.println("Digite o Tier da conta");
-                            tipo = Tipo.valueOf(sc.next().toUpperCase());
+                            System.out.println("Digite a transportadora responsavel");
+                            String transportadora = sc.next();
                             System.out.println("Digite o ID");
                             ID = sc.nextInt();
-                            for (Conta conta20 : contaList) {
-                                if (conta20.getId() == ID) {
-                                    System.out.println("Uma conta com esse ID já existe");
-                                } else {
-                                    Conta conta2 = new ContaTransportadora(ID, nome, email, senha, 0);
-                                    contaList.add(conta2);
-                                }
-                            }
+                           if(Conta.existeId(contaList, ID)){
+                             System.out.println("Já existe uma conta com esse ID");
+                           }
+                           else{
+                            ContaTransportadora contaTransportadoraNOVA = new ContaTransportadora(ID, nome, email, senha, transportadora);
+                            contaList.add(contaTransportadoraNOVA);
+                        }
                             break;
                     }
+                    break;
                 case 4:
                     System.out.println("Qual a ID do cliente");
                     ID = sc.nextInt();

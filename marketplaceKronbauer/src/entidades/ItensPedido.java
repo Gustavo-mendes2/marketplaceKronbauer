@@ -51,10 +51,13 @@ public class ItensPedido {
 
     @Override
     public String toString() {
-        return "ItensPedido{" +
-                ", qtd=" + qtd +
-                ", produto=" + produto +
-                + totalPedido() +
-                '}';
+        String linha = "+--------+--------------------------+----------------+\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append(linha);
+        sb.append(String.format("| %-6s | %-24s | %-14s |\n", "Qtd", "Produto", "Total Item"));
+        sb.append(linha);
+        sb.append(String.format("| %-6d | %-24s | R$ %-12.2f |\n", qtd, produto.getNome(), totalPedido()));
+        sb.append(linha);
+        return sb.toString();
     }
 }

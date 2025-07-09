@@ -16,11 +16,20 @@ public class Main {
 
 	public static void main(String[] args) {
 
+        // inicialização do scanner.
+
 		Scanner sc = new Scanner(System.in);
+
+        // Formatação da data e hora para os pedidos.
+
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
+        // Inicialização das listas de contas, itens pedidos e pedidos.
 		ArrayList<Conta> contaList = new ArrayList<>();
 		ArrayList<Pedido> pedidoArrayList = new ArrayList<>();
+        ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
+
+        // Criação de 7 vendedores padrão.
 
 		ContaVendedor contaVendedor1 = new ContaVendedor(11, "Carla", "Carla@email.com", "Carala123", "Renner");
 		ContaVendedor contaVendedor2 = new ContaVendedor(12, "Sara", "Sara@email.com", "Sara123", "C&A");
@@ -29,6 +38,9 @@ public class Main {
 		ContaVendedor contaVendedor5 = new ContaVendedor(15, "Lara", "Lara@email.com", "lara123", "Casas Bahia");
 		ContaVendedor contaVendedor6 = new ContaVendedor(16, "João", "João@email.com", "João123", "Pernambucanas");
 		ContaVendedor contaVendedor7 = new ContaVendedor(17, "Bob", "Bob@email.com", "bob123",  "Target");
+
+        // Adição dos vendedores a lista de contas.
+
 		contaList.add(contaVendedor1);
 		contaList.add(contaVendedor2);
 		contaList.add(contaVendedor3);
@@ -37,6 +49,8 @@ public class Main {
 		contaList.add(contaVendedor6);
 		contaList.add(contaVendedor7);
 
+        // Criação de 7 clientes padrão.
+
 		ContaClient contaClient1 = new ContaClient(1, "Chico", "Chico@email.com", "Chico123", Tipo.OURO, 1234);
 		ContaClient contaClient2 = new ContaClient(2, "Gabriel", "Gabriel@email.com", "gabriel123", Tipo.BRONZE, 1235);
 		ContaClient contaClient3 = new ContaClient(3, "Morissay", "morissay@email.com", "mor123", Tipo.PLATINA, 1236);
@@ -44,6 +58,9 @@ public class Main {
 		ContaClient contaClient5 = new ContaClient(5, "Maria", "maria@email.com", "maria123", Tipo.OURO, 1238);
 		ContaClient contaClient6 = new ContaClient(6, "Froid", "froid@email.com", "froid123", Tipo.PRATA, 1239);
 		ContaClient contaClient7 = new ContaClient(7, "Laura", "laura@email.com", "laura123", Tipo.PRATA, 1240);
+
+        // Adição dos clientes à lista de contas.
+
 		contaList.add(contaClient1);
 		contaList.add(contaClient2);
 		contaList.add(contaClient3);
@@ -52,6 +69,8 @@ public class Main {
 		contaList.add(contaClient6);
 		contaList.add(contaClient7);
 
+        // Criação de transpotadoras padrão.
+
 		ContaTransportadora contaTransportadora1 = new ContaTransportadora(21, "Mariana", "Marina@email.com", "marina123","Gol");
 		ContaTransportadora contaTransportadora2 = new ContaTransportadora(22, "Cartola", "Cartola@email.com", "cartola123", "Sedex");
 		ContaTransportadora contaTransportadora3 = new ContaTransportadora(23, "Samuel", "samuel@email.com", "samuel123", "AmericanExpress");
@@ -59,13 +78,18 @@ public class Main {
 		ContaTransportadora contaTransportadora5 = new ContaTransportadora(25, "Olivia", "Oliviaa@email.com", "olivia123", "BrasilTrans");
 		ContaTransportadora contaTransportadora6 = new ContaTransportadora(26, "Rodrigo", "Rodrigo@email.com", "rodrigo123", "ExtraExpress");
 		ContaTransportadora contaTransportadora7 = new ContaTransportadora(27, "Cícero", "cicero@email.com", "cicero123", "AmazonDelivery");
-		contaList.add(contaTransportadora1);
+
+        // Adição das transportadoras à lista de contas.
+
+        contaList.add(contaTransportadora1);
 		contaList.add(contaTransportadora2);
 		contaList.add(contaTransportadora3);
 		contaList.add(contaTransportadora4);
 		contaList.add(contaTransportadora5);
 		contaList.add(contaTransportadora6);
 		contaList.add(contaTransportadora7);
+
+        // Criação de 7 produtos padrão.
 
         Produto produto1 = new Produto(1,"Parati", 8000.00);
         Produto produto2 = new Produto(2, "Gol", 12000.00);
@@ -75,8 +99,7 @@ public class Main {
         Produto produto6 = new Produto(6, "Corolla", 52000.00);
         Produto produto7 = new Produto(7, "Uno", 7000.00);
 
-
-        ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
+        // Adicionando os produtos aos itens pedidos e atribuindo quantidades.
 
         ItensPedido itemPedido1 = new ItensPedido(produto1.getPreço(),produto1,2);
         ItensPedido itemPedido2 = new ItensPedido(produto2.getPreço(), produto2, 1);
@@ -86,6 +109,8 @@ public class Main {
         ItensPedido itemPedido6 = new ItensPedido(produto6.getPreço(), produto6, 4);
         ItensPedido itemPedido7 = new ItensPedido(produto7.getPreço(), produto7, 2);
 
+        // Adição dos itens pedidos à lista dos itens pedidos.
+
         itensPedidoList.add(itemPedido1);
         itensPedidoList.add(itemPedido2);
         itensPedidoList.add(itemPedido3);
@@ -94,8 +119,7 @@ public class Main {
         itensPedidoList.add(itemPedido6);
         itensPedidoList.add(itemPedido7);
 
-
-
+        // Criação de pedidos usando as listas de itens pedidos.
 
         Pedido pedido1 = new Pedido(contaClient1,contaTransportadora1,contaVendedor1, LocalDateTime.parse("01/07/2025 07:20",fmt),'p',1,itensPedidoList,1,Status.ENCAMINHADO);
 
@@ -111,6 +135,8 @@ public class Main {
 
         Pedido pedido7 = new Pedido(contaClient7,contaTransportadora7,contaVendedor7,LocalDateTime.parse("10/07/2025 08:00",fmt),'p',7,itensPedidoList,1,Status.ENCAMINHADO);
 
+        // Adição dos pedidos à lista de pedidos.
+
         pedidoArrayList.add(pedido1);
         pedidoArrayList.add(pedido2);
         pedidoArrayList.add(pedido3);
@@ -119,6 +145,8 @@ public class Main {
         pedidoArrayList.add(pedido6);
         pedidoArrayList.add(pedido7);
 
+
+        // Menu inicial
 
 		int op;
 		do {
@@ -129,11 +157,17 @@ public class Main {
 
 			op = sc.nextInt();
 			switch (op) {
+
+                // Opções de alteração de dados de contas e pedidos.
+
                 case 1:
                     System.out.println("O que você quer alterar (1-CONTA 2-PEDIDO)");
                     int opAlterar = sc.nextInt();
                     switch (opAlterar){
                         case 1:
+
+                            // Alteração nos dados das contas.
+
                             System.out.println("Digite o ID da conta que você quer alterar");
                             int scanAlt = sc.nextInt();
                             for (Conta contaAlterar : contaList){
@@ -160,11 +194,18 @@ public class Main {
                                 }
                             }
                             break;
+
                         case 2:
+
+                            // Alterações nos pedidos.
+
                             System.out.println("Digite o ID pedido que você quer alterar");
                             scanAlt = sc.nextInt();
                             for (Pedido pedidoAltera : pedidoArrayList){
                                 if(pedidoAltera.getIDPedido() == scanAlt){
+
+                                    // Opções de alterações dos pedidos.
+
                                     System.out.println("Qual atributo você quer alterar (S)tatus, (A)dicionar item, (R)emover item");
                                     char opAltPedido = sc.next().charAt(0);
                                     switch (opAltPedido){
@@ -206,15 +247,27 @@ public class Main {
                     }
                     break;
                 case 2:
-                    System.out.println("Você quer listar a contas(1) ou pedidos(2)");
+
+                    // Opções de listagem
+
+                    System.out.println("Você quer listar contas (1) ou pedidos (2)");
                     int opListagem = sc.nextInt();
                     if(opListagem == 1){
+
+                        // Opções de busca para conta.
+
                         System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-ID DE CONTA 2-NOME DA CONTA");
                         int opListar = sc.nextInt();
+
+                        // Opções de forma de listagem ou busca.
+
                         System.out.println("Você quer listar ou procurar uma ID especifica?(1-PROCURAR 2-LISTAR");
                         int opListarEcolha = sc.nextInt();
                         if (opListarEcolha == 1) {
                             if (opListar == 1) {
+
+                                // Procura por ID.
+
                                 System.out.println("Digite o id da conta que você quer procurar");
                                 int idProcura = sc.nextInt();
                                 for (Conta conta : contaList) {
@@ -224,6 +277,9 @@ public class Main {
                                 }
                             }
                             if (opListar == 2) {
+
+                                // Procura por nome de conta.
+
                                 System.out.println("Digite o nome da conta que você quer procurar");
                                 String nomeContaProcura = sc.next();
                                 for (Conta conta1 : contaList){
@@ -234,6 +290,9 @@ public class Main {
                             }
                         }
                         if (opListarEcolha == 2){
+
+                            // Listagem ordenada por ID de conta.
+
                             if(opListar == 1){
                                 System.out.println("Digite o ID mínimo");
                                 int idMin = sc.nextInt();
@@ -247,6 +306,9 @@ public class Main {
                                     }
                                 }
                             }
+
+                            // Listagem ordenada por nome.
+
                             if (opListar == 2){
                                 System.out.println("Digite a letra inicial dos nomes que você quer listar:");
                                 char letraInicial = sc.next().toLowerCase().charAt(0);
@@ -259,13 +321,22 @@ public class Main {
                             }
                         }
                     }
+
+                    // Opções para pedidos.
+
                     if(opListagem == 2){
                         System.out.println("Você quer buscar ou listar o pedido ?(1-BUSCAR 2-LISTAR)");
                         int opListarPedidoL = sc.nextInt();
                         if(opListarPedidoL == 1){
+
+                            // Opções de atributos para a busca de um pedido
+
                             System.out.println("Digite por qual variavel você quer buscar o pedido (1-ID 2-Nome do cliente 3-Nome da transportadora)");
                             int opListarPedido = sc.nextInt();
                             if(opListarPedido == 1){
+
+                                // Busca por ID
+
                                 System.out.println("Digite o ID que deseja procurar");
                                 int idPedidoProcura = sc.nextInt();
                                 for (Pedido pedidoListagem : pedidoArrayList){
@@ -275,6 +346,9 @@ public class Main {
                                 }
                             }
                             if (opListarPedido == 2){
+
+                                // Busca por nome do cliente.
+
                                 System.out.println("Digite o nome do cliente");
                                 String nomeClienteP = sc.next();
                                 for (Pedido pedidoListagem1 : pedidoArrayList){
@@ -284,6 +358,9 @@ public class Main {
                                 }
                             }
                             if(opListarPedido == 3){
+
+                                // Busca pelo nome do motorista.
+
                                 System.out.println("Digite o nome do motorista");
                                 String nomeMotoP = sc.next();
                                 for (Pedido pedidoListagem2 : pedidoArrayList){
@@ -294,9 +371,15 @@ public class Main {
                             }
                         }
                         if(opListarPedidoL == 2){
-                            System.out.println("Digite por qual variavel você quer buscar o pedido (1-ID 2-Nome do cliente 3-Nome da transportadora)");
+
+                            // Opções de listagem de pedido.
+
+                            System.out.println("Digite por qual variavel você quer listar o pedido (1-ID 2-Nome do cliente 3-Nome da transportadora)");
                             int opListarPedido2 = sc.nextInt();
                             if (opListarPedido2 == 1){
+
+                                // Listagem por ID do cliente.
+
                                 System.out.println("Digite o ID mínimo");
                                 int idMin = sc.nextInt();
                                 System.out.println("Digite o ID máximo");
@@ -308,6 +391,9 @@ public class Main {
                                     }
                             }
                             if (opListarPedido2 == 2){
+
+                                // Listagem por nome do cliente
+
                                 System.out.println("Digite o nome do cliente");
                                 String nomeClienteL = sc.next();
                                 for (Pedido pedidolistagem : pedidoArrayList){
@@ -317,6 +403,9 @@ public class Main {
                                 }
                             }
                             if(opListarPedido2 == 3){
+
+                                // Listagem por nome do motorista
+
                                 System.out.println("Digite o nome do motorista");
                                 String nomeMotoristaL = sc.next();
                                 for (Pedido pedidoListagem : pedidoArrayList){
@@ -330,10 +419,16 @@ public class Main {
                     }
                     break;
                 case 3:
+
+                    // Opções de inserção de novas contas.
+
                     System.out.println("Que tipo de conta você quer inserir?(1-Cliente 2-Vendedor 3- Transportadora");
                     int opTipoConta = sc.nextInt();
                     int ID;
                     switch (opTipoConta) {
+
+                        //Conta de cliente
+
                         case 1:
                             System.out.println("Digite o nome");
                             String nome = sc.next();
@@ -355,6 +450,9 @@ public class Main {
                                 contaList.add(contaClientNOVA);
                             }
                             break;
+
+                        // Conta do vendedor.
+
                         case 2:
                             System.out.println("Digite o nome");
                             nome = sc.next();
@@ -374,6 +472,9 @@ public class Main {
                                contaList.add(contaVendedorNOVA);
                            }
                             break;
+
+                        // Conta de transportadora.
+
                         case 3:
                             System.out.println("Digite o nome");
                             nome = sc.next();
@@ -395,7 +496,13 @@ public class Main {
                             break;
                     }
                     break;
+
+                // Adição de novo pedido.
+
                 case 4:
+
+                    // Dados dos responsáveis pelo pedido.
+
                     System.out.println("Qual a ID do cliente");
                     ID = sc.nextInt();
                     ContaClient contaC = (ContaClient) buscarContaPorId(contaList, ID);
@@ -408,11 +515,13 @@ public class Main {
                     if (contaC != null) {
                         if (contaT != null) {
                             if (contaV != null) {
+
+                                // Inserção dos dados dos produtos do pedido.
+
                                 System.out.println("Digite o ID do pedido");
                                 int PedidoID = sc.nextInt();
                                 System.out.println("Quantos produtos tem o pedido");
                                 int qtdProdutos = sc.nextInt();
-                               // ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
                                 for (int a = 0; a < qtdProdutos; a++) {
                                     System.out.println("Digite o nome do " + (a + 1) + "° produto");
                                     String nomeProduto = sc.next();
@@ -426,6 +535,9 @@ public class Main {
                                     ItensPedido itensPedido = new ItensPedido(preçoProduto, produto, quantidadeProdutos);
                                     itensPedidoList.add(itensPedido);
                                 }
+
+                                // Seleção da forma de pagamento do pedido.
+
                                 System.out.println("Digite a forma de pagamento (C)rédito, (P)ix e (D)ébito");
                                 Character formaScan = sc.next().charAt(0);
                                 LocalDateTime agora = LocalDateTime.now();
@@ -438,6 +550,9 @@ public class Main {
                                         parcelas = 12;
                                     }
                                 }
+
+                                // Adição do pedido à lista de pedidos.
+
                                 Pedido pedido = new Pedido(contaC, contaT, contaV, agora, formaScan, PedidoID, itensPedidoList, parcelas, Status.ENCAMINHADO);
                                 pedidoArrayList.add(pedido);
                                 System.out.println(pedidoArrayList);

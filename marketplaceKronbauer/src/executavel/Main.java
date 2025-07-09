@@ -4,6 +4,7 @@ import entidades.*;
 import entidades.enumeradas.Status;
 import entidades.enumeradas.Tipo;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -14,8 +15,10 @@ import static entidades.Pedido.buscarContaPorId;
 public class Main {
 
 	public static void main(String[] args) {
+
 		Scanner sc = new Scanner(System.in);
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
 		ArrayList<Conta> contaList = new ArrayList<>();
 		ArrayList<Pedido> pedidoArrayList = new ArrayList<>();
 		ContaVendedor contaVendedor1 = new ContaVendedor(11, "Carla", "Carla@email.com", "Carala123", "Renner");
@@ -62,7 +65,60 @@ public class Main {
 		contaList.add(contaTransportadora5);
 		contaList.add(contaTransportadora6);
 		contaList.add(contaTransportadora7);
+
+        Produto produto1 = new Produto(1,"Parati", 8000.00);
+        Produto produto2 = new Produto(2, "Gol", 12000.00);
+        Produto produto3 = new Produto(3, "Civic", 35000.00);
+        Produto produto4 = new Produto(4, "Palio", 9500.00);
+        Produto produto5 = new Produto(5, "Onix", 48000.00);
+        Produto produto6 = new Produto(6, "Corolla", 52000.00);
+        Produto produto7 = new Produto(7, "Uno", 7000.00);
+
+
+        ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
+
+        ItensPedido itemPedido1 = new ItensPedido(produto1.getPreço(),produto1,2);
+        ItensPedido itemPedido2 = new ItensPedido(produto2.getPreço(), produto2, 1);
+        ItensPedido itemPedido3 = new ItensPedido(produto3.getPreço(), produto3, 3);
+        ItensPedido itemPedido4 = new ItensPedido(produto4.getPreço(), produto4, 2);
+        ItensPedido itemPedido5 = new ItensPedido(produto5.getPreço(), produto5, 1);
+        ItensPedido itemPedido6 = new ItensPedido(produto6.getPreço(), produto6, 4);
+        ItensPedido itemPedido7 = new ItensPedido(produto7.getPreço(), produto7, 2);
+
+        itensPedidoList.add(itemPedido1);
+        itensPedidoList.add(itemPedido2);
+        itensPedidoList.add(itemPedido3);
+        itensPedidoList.add(itemPedido4);
+        itensPedidoList.add(itemPedido5);
+        itensPedidoList.add(itemPedido6);
+        itensPedidoList.add(itemPedido7);
+
+
 		ArrayList<Pedido> pedidos = new ArrayList<>();
+
+        Pedido pedido1 = new Pedido(contaClient1,contaTransportadora1,contaVendedor1, LocalDateTime.parse("01/07/2025 07:20"),'p',1,itensPedidoList,1,Status.ENCAMINHADO);
+
+        Pedido pedido2 = new Pedido(contaClient2,contaTransportadora2, contaVendedor2, LocalDateTime.parse("03/07/2025 10:15"), 'c', 5, itensPedidoList, 1, Status.EM_ROTA_DE_ENTREGA);
+
+        Pedido pedido3 = new Pedido(contaClient3,contaTransportadora3,contaVendedor3,LocalDateTime.parse("05/07/2025 14:30"),'d',1, itensPedidoList, 1, Status.ENTREGUE);
+
+        Pedido pedido4 = new Pedido(contaClient4,contaTransportadora4,contaVendedor4,LocalDateTime.parse("07/07/2025 09:45"),'p',1,itensPedidoList,1,Status.ENCAMINHADO);
+
+        Pedido pedido5 = new Pedido(contaClient5,contaTransportadora5,contaVendedor5,LocalDateTime.parse("08/07/2025 17:00"),'c',10,itensPedidoList,1,Status.EM_ROTA_DE_ENTREGA);
+
+        Pedido pedido6 = new Pedido(contaClient6,contaTransportadora6,contaVendedor6,LocalDateTime.parse("09/07/2025 12:20"),'d',1,itensPedidoList,1,Status.ENTREGUE);
+
+        Pedido pedido7 = new Pedido(contaClient7,contaTransportadora7,contaVendedor7,LocalDateTime.parse("10/07/2025 08:00"),'p',1,itensPedidoList,1,Status.ENCAMINHADO);
+
+        pedidos.add(pedido1);
+        pedidos.add(pedido2);
+        pedidos.add(pedido3);
+        pedidos.add(pedido4);
+        pedidos.add(pedido5);
+        pedidos.add(pedido6);
+        pedidos.add(pedido7);
+
+
 		int op;
 		do {
 			System.out.println("1- Alterar pedido ou conta");
@@ -149,7 +205,7 @@ public class Main {
                     }
                     break;
                 case 2:
-                    System.out.println("Você quer listar a contas(1) ou o pedidos(2)");
+                    System.out.println("Você quer listar a contas(1) ou pedidos(2)");
                     int opListagem = sc.nextInt();
                     if(opListagem == 1){
                         System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-ID DE CONTA 2-NOME DA CONTA");
@@ -355,7 +411,7 @@ public class Main {
                                 int PedidoID = sc.nextInt();
                                 System.out.println("Quantos produtos tem o pedido");
                                 int qtdProdutos = sc.nextInt();
-                                ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
+                               // ArrayList<ItensPedido> itensPedidoList = new ArrayList<>();
                                 for (int a = 0; a < qtdProdutos; a++) {
                                     System.out.println("Digite o nome do " + (a + 1) + "° produto");
                                     String nomeProduto = sc.next();
@@ -391,5 +447,5 @@ public class Main {
             }
 
 		}while(op != 0);
-	}
+    }
 }

@@ -2,15 +2,24 @@ package entidades;
 
 import entidades.enumeradas.Tipo;
 
+// Conta dos clientes
+
 public class ContaClient extends Conta {
+
+    // atributos
+
     private Integer endereço;
     private Tipo tier;
+
+    // Constructor
 
     public ContaClient(Integer id, String nome, String email, String senha, Tipo tier, Integer endereço) {
         super(id, nome, email, senha);
         this.endereço = endereço;
         this.tier = tier;
     }
+
+    //Getters e setters
 
     public Integer getEndereço() {
         return endereço;

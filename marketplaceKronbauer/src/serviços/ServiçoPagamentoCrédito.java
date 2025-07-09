@@ -2,7 +2,12 @@ package serviços;
 
 import entidades.enumeradas.Tipo;
 
+// Classe que retorna o valor do pedido após taxas ou descontos de ranking da conta e dos juros do cartão.
+
 public class ServiçoPagamentoCrédito implements ServiçoPagamento {
+
+    // Função que ajusta o valor de acordo com o ranking da conta.
+
     @Override
     public double Pagamento(Tipo contaTipo, Double PagamentoTotal) {
         if (contaTipo == Tipo.BRONZE) {
@@ -22,6 +27,8 @@ public class ServiçoPagamentoCrédito implements ServiçoPagamento {
         }
         return 0;
     }
+
+    // Função que modifica o preço de acordo com o juros simples do valor total.
 
     public double Parcelamento( Double PagamentoTotal, Integer parcelas){
 

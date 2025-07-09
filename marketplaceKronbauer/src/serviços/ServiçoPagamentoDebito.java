@@ -3,7 +3,13 @@ package serviços;
 
 import entidades.Conta;
 import entidades.enumeradas.Tipo;
+
+// Classe que ajusta o preço levando em consideração apenas o ranking.
+
 public class ServiçoPagamentoDebito implements ServiçoPagamento{
+
+    // Função que retorna o valor após o ajuste
+
     @Override
     public double Pagamento(Tipo contaTipo, Double PagamentoTotal) {
         if (contaTipo == Tipo.BRONZE) {

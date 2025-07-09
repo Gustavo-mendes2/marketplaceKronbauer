@@ -4,20 +4,27 @@ import entidades.enumeradas.Tipo;
 
 import java.util.ArrayList;
 
+// Classe da qual todas as contas herdam os atributos que compartilham
+
 public abstract class Conta {
+
+    // atributos
+
     private Integer id;
     private String nome;
     private String email;
     private String senha;
-    // private Tipo tier;
+
+    // Constructor
 
     public Conta(Integer id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        //  this.tier = tier;
     }
+
+    // Getters e setters
 
     public Integer getId() {
         return id;
@@ -50,6 +57,8 @@ public abstract class Conta {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    // Recebe a lista de contas e verifica se uma certa ID existe dentro da lista.
 
     public static boolean existeId(ArrayList<Conta> contas, int id) {
         for (Conta conta : contas) {

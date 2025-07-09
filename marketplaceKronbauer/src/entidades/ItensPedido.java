@@ -9,16 +9,25 @@ import serviços.ServiçoPagamentoPix;
 import java.util.ArrayList;
 import java.util.List;
 
+// Classe que contem os atributos de cada item de um pedido.
+
 public class ItensPedido {
+
+    // atributos
+
     private Integer qtd;
     private Double preço;
     private Produto produto;
+
+    // constructor
 
     public ItensPedido(Double preço, Produto produto, Integer qtd) {
         this.preço = preço;
         this.produto = produto;
         this.qtd = qtd;
     }
+
+    // Getters e setters
 
     public Double getPreço() {
         return preço;
@@ -47,7 +56,6 @@ public class ItensPedido {
     public Double totalPedido(){
         return preço * qtd;
     }
-
 
     @Override
     public String toString() {

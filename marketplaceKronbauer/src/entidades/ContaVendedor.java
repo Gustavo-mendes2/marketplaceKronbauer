@@ -2,13 +2,22 @@ package entidades;
 
 import entidades.enumeradas.Tipo;
 
+// Contas dos vendedores
+
 public class ContaVendedor extends Conta{
+
+    // atributos
+
     private String loja;
+
+    // constructor
 
     public ContaVendedor(Integer id, String nome, String email, String senha, String loja) {
         super(id, nome, email, senha);
         this.loja = loja;
     }
+
+    // Getters e setters
 
     public String getLoja() {
         return loja;

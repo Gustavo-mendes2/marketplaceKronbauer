@@ -3,6 +3,8 @@ package serviços;
 import entidades.Conta;
 import entidades.enumeradas.Tipo;
 
+// Classe que retorna o preço de um pedido com um desconto por ser pago com o pix.
+
 public class ServiçoPagamentoPix implements ServiçoPagamento{
 
   @Override

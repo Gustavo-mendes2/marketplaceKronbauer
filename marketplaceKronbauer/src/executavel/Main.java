@@ -21,6 +21,7 @@ public class Main {
 
 		ArrayList<Conta> contaList = new ArrayList<>();
 		ArrayList<Pedido> pedidoArrayList = new ArrayList<>();
+
 		ContaVendedor contaVendedor1 = new ContaVendedor(11, "Carla", "Carla@email.com", "Carala123", "Renner");
 		ContaVendedor contaVendedor2 = new ContaVendedor(12, "Sara", "Sara@email.com", "Sara123", "C&A");
 		ContaVendedor contaVendedor3 = new ContaVendedor(13, "Laos", "laos@email.com", "laos123",  "Chanell");
@@ -94,29 +95,29 @@ public class Main {
         itensPedidoList.add(itemPedido7);
 
 
-		ArrayList<Pedido> pedidos = new ArrayList<>();
 
-        Pedido pedido1 = new Pedido(contaClient1,contaTransportadora1,contaVendedor1, LocalDateTime.parse("01/07/2025 07:20"),'p',1,itensPedidoList,1,Status.ENCAMINHADO);
 
-        Pedido pedido2 = new Pedido(contaClient2,contaTransportadora2, contaVendedor2, LocalDateTime.parse("03/07/2025 10:15"), 'c', 5, itensPedidoList, 1, Status.EM_ROTA_DE_ENTREGA);
+        Pedido pedido1 = new Pedido(contaClient1,contaTransportadora1,contaVendedor1, LocalDateTime.parse("01/07/2025 07:20",fmt),'p',1,itensPedidoList,1,Status.ENCAMINHADO);
 
-        Pedido pedido3 = new Pedido(contaClient3,contaTransportadora3,contaVendedor3,LocalDateTime.parse("05/07/2025 14:30"),'d',1, itensPedidoList, 1, Status.ENTREGUE);
+        Pedido pedido2 = new Pedido(contaClient2,contaTransportadora2, contaVendedor2, LocalDateTime.parse("03/07/2025 10:15",fmt), 'c', 2, itensPedidoList, 1, Status.EM_ROTA_DE_ENTREGA);
 
-        Pedido pedido4 = new Pedido(contaClient4,contaTransportadora4,contaVendedor4,LocalDateTime.parse("07/07/2025 09:45"),'p',1,itensPedidoList,1,Status.ENCAMINHADO);
+        Pedido pedido3 = new Pedido(contaClient3,contaTransportadora3,contaVendedor3,LocalDateTime.parse("05/07/2025 14:30",fmt),'d',3, itensPedidoList, 1, Status.ENTREGUE);
 
-        Pedido pedido5 = new Pedido(contaClient5,contaTransportadora5,contaVendedor5,LocalDateTime.parse("08/07/2025 17:00"),'c',10,itensPedidoList,1,Status.EM_ROTA_DE_ENTREGA);
+        Pedido pedido4 = new Pedido(contaClient4,contaTransportadora4,contaVendedor4,LocalDateTime.parse("07/07/2025 09:45",fmt),'p',4,itensPedidoList,1,Status.ENCAMINHADO);
 
-        Pedido pedido6 = new Pedido(contaClient6,contaTransportadora6,contaVendedor6,LocalDateTime.parse("09/07/2025 12:20"),'d',1,itensPedidoList,1,Status.ENTREGUE);
+        Pedido pedido5 = new Pedido(contaClient5,contaTransportadora5,contaVendedor5,LocalDateTime.parse("08/07/2025 17:00",fmt),'c',5,itensPedidoList,1,Status.EM_ROTA_DE_ENTREGA);
 
-        Pedido pedido7 = new Pedido(contaClient7,contaTransportadora7,contaVendedor7,LocalDateTime.parse("10/07/2025 08:00"),'p',1,itensPedidoList,1,Status.ENCAMINHADO);
+        Pedido pedido6 = new Pedido(contaClient6,contaTransportadora6,contaVendedor6,LocalDateTime.parse("09/07/2025 12:20",fmt),'d',6,itensPedidoList,1,Status.ENTREGUE);
 
-        pedidos.add(pedido1);
-        pedidos.add(pedido2);
-        pedidos.add(pedido3);
-        pedidos.add(pedido4);
-        pedidos.add(pedido5);
-        pedidos.add(pedido6);
-        pedidos.add(pedido7);
+        Pedido pedido7 = new Pedido(contaClient7,contaTransportadora7,contaVendedor7,LocalDateTime.parse("10/07/2025 08:00",fmt),'p',7,itensPedidoList,1,Status.ENCAMINHADO);
+
+        pedidoArrayList.add(pedido1);
+        pedidoArrayList.add(pedido2);
+        pedidoArrayList.add(pedido3);
+        pedidoArrayList.add(pedido4);
+        pedidoArrayList.add(pedido5);
+        pedidoArrayList.add(pedido6);
+        pedidoArrayList.add(pedido7);
 
 
 		int op;
@@ -129,7 +130,7 @@ public class Main {
 			op = sc.nextInt();
 			switch (op) {
                 case 1:
-                    System.out.println("Qual objeto você quer alterar(1-CONTA 2-PEDIDO)");
+                    System.out.println("O que você quer alterar (1-CONTA 2-PEDIDO)");
                     int opAlterar = sc.nextInt();
                     switch (opAlterar){
                         case 1:
@@ -210,7 +211,7 @@ public class Main {
                     if(opListagem == 1){
                         System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-ID DE CONTA 2-NOME DA CONTA");
                         int opListar = sc.nextInt();
-                        System.out.println("Você quer listar ou procurar uma instancia especifica?(1-INSTANCIA 2-LISTAR");
+                        System.out.println("Você quer listar ou procurar uma ID especifica?(1-PROCURAR 2-LISTAR");
                         int opListarEcolha = sc.nextInt();
                         if (opListarEcolha == 1) {
                             if (opListar == 1) {
@@ -259,7 +260,7 @@ public class Main {
                         }
                     }
                     if(opListagem == 2){
-                        System.out.println("Digite por qual varivel você quer buscar/listar a conta(1-INSTANCIA 2-LISTAR)");
+                        System.out.println("Você quer buscar ou listar o pedido ?(1-BUSCAR 2-LISTAR)");
                         int opListarPedidoL = sc.nextInt();
                         if(opListarPedidoL == 1){
                             System.out.println("Digite por qual variavel você quer buscar o pedido (1-ID 2-Nome do cliente 3-Nome da transportadora)");
